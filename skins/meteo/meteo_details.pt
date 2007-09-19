@@ -1,0 +1,265 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xml:lang="en" lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="meteo">
+
+<head>
+<metal:column fill-slot="column_two_slot"></metal:column>
+
+<metal:block metal:fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+<body>
+<metal:main fill-slot="main"
+            tal:define="tool here/meteo_tool;
+                        weather tool/getWeatherData;">
+
+  <h1>Información meteorológica para los próximos 7 días</h1>
+
+  <tal:block condition="weather/error|nothing">
+    <div id="inmWrapper">
+        <iframe src=""
+                name="inmFrame"
+                id="inmFrame"
+                marginwidth="0"
+                marginheight="0"
+                frameborder="0"
+                scrolling="no"
+                width="703px"
+                height="541px"
+                frameborder="0"
+                tal:attributes="src tool/getLocationUrl">
+        </iframe>
+    </div>
+  </tal:block>
+  
+  <tal:block condition="not:weather/error|nothing">
+  <div id="inmWrapper"
+       tal:define="firstDays python:weather['forecast'][0:3];
+                   lastDays  python:weather['forecast'][3:7];">
+                   
+  <table border="0" cellspacing="2" cellpadding="0">
+  <tr>
+    <td colspan="8" width="100%" class="titfilgen">
+    <table border="0" cellspacing="0" cellpadding="2" width="100%">
+      <tr>
+      <td width="450" class="titfil_13">
+        <span tal:define="location weather/location"
+              tal:content="structure python:location[0] + ' &ndash; ' + location[1]">location</span>
+      </td>
+      <td width="218" class="titfilright_11">
+        Elaborado: <span tal:content="structure weather/date">date</span>
+      </td>
+
+      </tr>
+      <tr>
+      <td width="450" class="titfil">
+       (<span tal:content="structure weather/altitude">altitude</span> respecto al nivel del mar)
+      </td>
+      <td width="218" class="titfilright_9">
+        (hora local peninsular)
+      </td>
+      </tr>
+
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="8" width="100%">
+    <table border="0" cellspacing="5" cellpadding="3" width="100%">
+      <tr>
+        <td class="titfil2">
+          Fecha
+        </td>
+        <tal:loop repeat="day firstDays">
+          <td class="titfilcenter" valign="top" colspan="2">
+            <span tal:replace="structure day/fecha"></span><br />
+            <img src="meteo_icons/pixtr.gif" width="5" height="1" alt="" />a.m.<img src="meteo_icons/pixtr.gif" width="15" height="1" alt="" />|<img src="meteo_icons/pixtr.gif" width="15" height="1" alt="" />p.m.
+          </td>
+        </tal:loop>
+        <tal:loop repeat="day lastDays">
+          <td class="titfilcenter" valign="top">
+            <span tal:replace="structure day/fecha"></span>
+          </td>
+        </tal:loop>
+      </tr>
+
+      <tr>
+        <td class="titfil2">
+          Estado del cielo
+        </td>
+        <tal:loop repeat="day firstDays">
+          <td align="center">
+            <img src="" width="40" height="40" alt=""
+                 tal:define="estado_img python:day['estado_img'][0]"
+                 tal:attributes="src string:$portal_url/meteo_icons/$estado_img;
+                                 alt python:day['estado_alt'][0];
+                                 title python:day['estado_alt'][0]" />
+          </td>
+          <td align="center">
+            <img src="" width="40" height="40" alt=""
+                 tal:define="estado_img python:day['estado_img'][1]"
+                 tal:attributes="src string:$portal_url/meteo_icons/$estado_img;
+                                 alt python:day['estado_alt'][1];
+                                 title python:day['estado_alt'][1];" />
+          </td>
+        </tal:loop>
+
+        <tal:loop repeat="day lastDays">
+          <td align="center">
+            <img src="" width="40" height="40" alt=""
+                 tal:define="estado_img python:day['estado_img'][0]"
+                 tal:attributes="src string:$portal_url/meteo_icons/$estado_img;
+                                 alt python:day['estado_alt'][0];
+                                 title python:day['estado_alt'][0]" />
+          </td>
+        </tal:loop>
+      </tr>
+
+      <tr>
+        <td class="titfil2">
+          Prob. precipitación (%)
+        </td>
+        <tal:loop repeat="day firstDays">
+          <td align="center" colspan="2">
+            <span tal:replace="structure day/prob_prec"></span>
+          </td>
+        </tal:loop>
+
+        <tal:loop repeat="day lastDays">
+          <td align="center">
+            <span tal:replace="structure day/prob_prec"></span>
+          </td>
+        </tal:loop>
+      </tr>
+      
+      <tr>
+        <td class="titfil2">
+          T. Máxima (°C)
+        </td>
+        
+        <tal:loop repeat="day firstDays">
+          <td align="center" colspan="2">
+            <span tal:replace="structure day/temp_max"></span>
+          </td>
+        </tal:loop>
+
+        <tal:loop repeat="day lastDays">
+          <td align="center">
+            <span tal:replace="structure day/temp_max"></span>
+          </td>
+        </tal:loop>
+      </tr>
+      
+      <tr>
+        <td class="titfil2">
+          T. Mínima (°C)
+        </td>
+
+        <tal:loop repeat="day firstDays">
+          <td align="center" colspan="2">
+            <span tal:replace="structure day/temp_min"></span>
+          </td>
+        </tal:loop>
+
+        <tal:loop repeat="day lastDays">
+          <td align="center">
+            <span tal:replace="structure day/temp_min"></span>
+          </td>
+        </tal:loop>
+      </tr>
+      
+      <tr>
+        <td class="titfil2" rowspan="2">
+          Viento<br /><br />
+          (km/h)
+        </td>
+
+        <tal:loop repeat="day firstDays">
+          <td align="center">
+            <img src="" width="25" height="25" alt=""
+                 tal:define="viento_img python:day['viento_img'][0]"
+                 tal:attributes="src string:$portal_url/meteo_icons/$viento_img;
+                                 alt python:day['viento_alt'][0];
+                                 title python:day['viento_alt'][0]" />
+          </td>
+          <td align="center">
+            <img src="" width="25" height="25" alt=""
+                 tal:define="viento_img python:day['viento_img'][1]"
+                 tal:attributes="src string:$portal_url/meteo_icons/$viento_img;
+                                 alt python:day['viento_alt'][1];
+                                 title python:day['viento_alt'][1];" />
+          </td>
+        </tal:loop>
+
+        <tal:loop repeat="day lastDays">
+          <td align="center">
+            <img src="" width="25" height="25" alt=""
+                 tal:define="viento_img python:day['viento_img'][0]"
+                 tal:attributes="src string:$portal_url/meteo_icons/$viento_img;
+                                 alt python:day['viento_alt'][0];
+                                 title python:day['viento_alt'][0]" />
+          </td>
+        </tal:loop>
+      </tr>
+      
+      <tr>
+        <tal:loop repeat="day firstDays">
+          <td align="center">
+            <span tal:define="viento_kmh python:day['viento_kmh'][0]"
+                  tal:replace="structure viento_kmh"></span>
+          </td>
+          <td align="center">
+            <span tal:define="viento_kmh python:day['viento_kmh'][1]"
+                  tal:replace="structure viento_kmh"></span>
+          </td>
+        </tal:loop>
+
+        <tal:loop repeat="day lastDays">
+          <td align="center">
+            <span tal:define="viento_kmh python:day['viento_kmh'][0]"
+                  tal:replace="structure viento_kmh"></span>
+          </td>
+        </tal:loop>
+      </tr>
+      
+      <tr>
+        <td class="titfil2">
+          Índice UV Máximo
+        </td>
+
+        <tal:loop repeat="day firstDays">
+          <td align="center" colspan="2">
+            <span tal:replace="structure day/indice_uv"></span>
+          </td>
+        </tal:loop>
+        
+        <td colspan="4"></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  </table>
+  </div>
+  </tal:block>
+  
+  <div class="meteoLegal">
+    Predicción meteorológica proporcionada por el
+    <a href="http://www.inm.es"
+       alt="http://www.inm.es"
+       title="http://www.inm.es">Instituto Nacional de Meteorología</a>.
+  </div>
+  
+  <div class="discreet">
+    <a href="javascript:history.back()"
+        i18n:translate="meteo_back">Volver a la página anterior</a>
+  </div>
+  
+</metal:main>
+
+</body>
+</html>

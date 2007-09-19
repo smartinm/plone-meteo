@@ -1,0 +1,186 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/prefs_main_template/macros/master"
+      i18n:domain="meteo">
+
+<metal:block metal:fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+<body>
+
+<div metal:fill-slot="prefs_configlet_main"
+     tal:define="tool here/meteo_tool;
+                 errors options/state/getErrors;">
+
+    <h1 i18n:translate="heading_meteo_setup">Configuración de Meteo</h1>
+
+    <a href=""
+       class="link-parent"
+       tal:attributes="href string: $portal_url/plone_control_panel"
+       i18n:domain="plone"
+       i18n:translate="label_up_to_plone_setup">
+    Up to Site Setup
+    </a>
+
+    <p i18n:translate="description_meteo_setup">
+        Opciones que afectan a la apariencia y comportamiento de Meteo.
+    </p>
+
+    <form action="prefs_meteo_flush" method="get">
+        <fieldset>
+            <legend i18n:translate="legend_meteo_cache">Caché</legend>
+    
+            <div class="field" i18n:translate="help_meteo_flush">
+                Meteo utiliza una caché para evitar consultar contínuamente
+                el sitio web del INM, el cache se actualiza automáticamente
+                cada dos horas, pero si lo desea puede forzar una limpieza
+                del caché haciendo clic sobre el siguiente botón.
+            </div>
+    
+            <div class="formControls">
+                <input class="standalone"
+                       type="submit"
+                       name="form.button.flush"
+                       value="Limpiar caché"
+                       i18n:attributes="value label_flush;" />
+            </div>
+        </fieldset>
+    </form>
+
+    <form action=""
+          name="meteo"
+          method="post"
+          class="enableUnloadProtection"
+          tal:attributes="action string:${here_url}/${template_id}">
+
+        <fieldset>
+            <legend i18n:translate="legend_meteo_code">Identificador de la localidad</legend>
+    
+            <div class="field"
+                 tal:define="location_code request/location_code | tool/getLocationCode | nothing;
+                             error errors/location_code | nothing;"
+                 tal:attributes="class python:test(error, 'field error', 'field')">
+    
+                <label for="location_code"
+                       i18n:translate="label_location_code">Código del municipio en inm.es</label>
+
+                <span class="fieldRequired"
+                      title="Required"
+                      i18n:attributes="title title_required"
+                      i18n:translate="label_required"
+                      i18n:domain="plone">(Required)
+                </span>
+
+                <div class="formHelp" i18n:translate="help_location_code">
+                    Escriba el código númerico de cinco cifras de la localidad
+                    que desea mostrar en sus páginas.<br />
+                    Si no lo conoce puede obtenerlo de la siguiente página del
+                    <a href="http://www.inm.es/web/infmet/predi/locali.html"
+                       alt="http://www.inm.es/web/infmet/predi/locali.html"
+                       title="http://www.inm.es/web/infmet/predi/locali.html">
+                      Instituto Nacional de Meteorología</a>.
+                </div>
+
+                <div tal:content="error">Validation error output</div>
+
+                <input name="location_code"
+                       id="location_code"
+                       value=""
+                       size="30"
+                       maxlength="5"
+                       tabindex=""
+                       tal:attributes="value location_code;
+                                       tabindex tabindex/next;" />
+            </div>
+        </fieldset>
+    
+        <fieldset tal:define="portlet_type request/portlet_type | tool/getPortletType | string:multiple;">
+            <legend i18n:translate="legend_meteo_portlet">Apariencia del portlet</legend>
+            
+            <div style="float: left; margin-right: 50px;">
+                <input class="noborder"
+                       type="radio"
+                       name="portlet_type"
+                       id="portlet_multiple"
+                       value="multiple"
+                       tabindex=""
+                       tal:attributes="checked python:portlet_type == 'multiple';
+                                       tabindex tabindex;" />
+                <label for="portlet_multiple"
+                       i18n:translate="label_portlet_multiple">Portlet de varios días</label>
+
+                <br /><br />
+                <img src=""
+                     alt="Portlet de varios días"
+                     title="Portlet de varios días"
+                     tal:attributes="src string:$portal_url/portlet_multiple.png" />
+            </div>
+            
+            <div>
+                <input class="noborder"
+                       type="radio"
+                       name="portlet_type"
+                       id="portlet_single"
+                       value="single"
+                       tabindex=""
+                       tal:attributes="checked python:portlet_type == 'single';
+                                       tabindex tabindex;" />
+                <label for="portlet_single"
+                       i18n:translate="label_portlet_single">Portlet de día único</label>
+
+                <br /><br />
+                <img src=""
+                     alt="Portlet de día único"
+                     title="Portlet de día único"
+                     tal:attributes="src string:$portal_url/portlet_single.png" />
+            </div>
+            
+            <div class="visualClear"><!-- --></div><br />
+            
+            <div class="field"
+                 tal:define="portlet_days request/portlet_days | tool/getNumDaysInPortlet | python:3">
+                <label for="portlet_days"
+                       i18n:translate="label_portlet_days">Número de días</label>
+
+                <div class="formHelp" i18n:translate="help_portlet_days">
+                  Especifica el número de días que se mostrarán en el
+                  portlet de varios días.
+                </div>
+
+                <select name="portlet_days"
+                        id="portlet_days"
+                        tabindex=""
+                        value=""
+                        tal:attributes="value default_language;
+                                        tabindex tabindex/next;">
+                   <option tal:repeat="num python:range(1,8)"
+                           tal:attributes="value num;
+                                           selected python:test(portlet_days == num, 'selected', None)"
+                           tal:content="structure num" />
+                </select>
+                
+                <span>días</span>
+            </div>
+ 
+        </fieldset>
+
+        <div class="formControls">
+            <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.Save"
+                   value="Save"
+                   i18n:domain="plone"
+                   i18n:attributes="value label_save;"
+                   tal:attributes="tabindex tabindex/next;" />
+        </div>
+
+        <input type="hidden" name="form.submitted" value="1" />
+    </form>
+
+</div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,12 @@
+[default]
+title=Meteo Setup
+
+[validators]
+validators=prefs_meteo_form_validate
+
+[actions]
+action.success=traverse_to:string:prefs_meteo_set
+action.failure=traverse_to:string:prefs_meteo_form
+
+[security]
+View = 0:Manager
