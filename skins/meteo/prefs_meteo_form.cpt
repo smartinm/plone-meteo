@@ -58,6 +58,7 @@
     
             <div class="field"
                  tal:define="location_code request/location_code | tool/getLocationCode | nothing;
+                             location_search request/location_search/strip | nothing;
                              error errors/location_code | nothing;"
                  tal:attributes="class python:test(error, 'field error', 'field')">
     
@@ -73,28 +74,97 @@
 
                 <div class="formHelp" i18n:translate="help_location_code">
                     Escriba el código númerico de cinco cifras de la localidad
-                    que desea mostrar en sus páginas.<br />
-                    Si no lo conoce puede obtenerlo de la siguiente página del
-                    <a href="http://www.inm.es/web/infmet/predi/locali.html"
-                       alt="http://www.inm.es/web/infmet/predi/locali.html"
-                       title="http://www.inm.es/web/infmet/predi/locali.html">
-                      Instituto Nacional de Meteorología</a>.
+                    que desea mostrar en sus páginas.
                 </div>
 
                 <div tal:content="error">Validation error output</div>
 
+                <tal:results condition="not: location_search">
                 <input name="location_code"
                        id="location_code"
                        value=""
-                       size="30"
+                       size="10"
                        maxlength="5"
                        tabindex=""
                        tal:attributes="value location_code;
                                        tabindex tabindex/next;" />
+                <span class="discreet"
+                     tal:condition="location_code"
+                     tal:define="loc python:tool.searchLocationByCode(location_code)"
+                     tal:content="string: ($loc)">
+                </span>
+                <br /><br />
+                </tal:results>
+                
+                <div class="formHelp" i18n:translate="help_location_code">
+                    Si no conoce este código, escriba el nombre de la
+                    ubicación y haga clic sobre el botón Buscar municipio.
+                </div>
+
+                <input name="location_search"
+                       id="location_search"
+                       value=""
+                       size="30"
+                       maxlength="30"
+                       tabindex=""
+                       tal:attributes="value location_search;
+                                       tabindex tabindex/next;" />
+
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.search"
+                       value="Buscar municipio"
+                       i18n:domain="plone"
+                       i18n:attributes="value label_save2;"
+                       tal:attributes="tabindex tabindex/next;" />
+                <br />
+
+                <tal:results condition="location_search">
+                    <br />
+                    <tal:search define="locations python:tool.searchLocation(location_search);
+                                        success python:locations and len(locations) < 20;">
+
+                        <tal:block condition="success">
+                          <tal:results repeat="location locations">
+                            <input class="noborder"
+                                   type="radio"
+                                   name="location_code"
+                                   style=""
+                                   tal:attributes="tabindex tabindex/next;
+                                                   id python:location[0];
+                                                   value python:location[0];
+                                                   checked repeat/location/start;" />
+                            <label style="font-size:90%;"
+                                   tal:content="python:('(%s) - %s ' % (location[0], location[1]))"
+                                   tal:attributes="for python:location[0];"></label>
+                            <br />
+                          </tal:results>
+                          <br />
+                          <div i18n:translate="help_location_search_no_result2">
+                            Si está satisfecho con el resultado, seleccione la
+                            localización y guárdela haciendo clic en el botón
+                            Guardar que se encuentra al final de esta página.
+                          </div>
+                        </tal:block>
+                        
+                        <tal:block condition="not: success">
+                          <div tal:condition="locations">
+                              Su búsqueda ha producido muchos resultados,
+                              por favor sea más preciso en el término buscado.
+                          </div>
+                          
+                          <div tal:condition="not: locations"
+                                 i18n:translate="help_location_search_no_result2">
+                              Su búsqueda no produjo ningún resultado.
+                          </div>
+                        </tal:block>
+                    </tal:search>
+                </tal:results>
             </div>
         </fieldset>
     
-        <fieldset tal:define="portlet_type request/portlet_type | tool/getPortletType | string:multiple;">
+        <fieldset tal:define="portlet_type request/portlet_type | tool/getPortletType | string: multiple;">
             <legend i18n:translate="legend_meteo_portlet">Apariencia del portlet</legend>
             
             <div style="float: left; margin-right: 50px;">
@@ -138,7 +208,7 @@
             <div class="visualClear"><!-- --></div><br />
             
             <div class="field"
-                 tal:define="portlet_days request/portlet_days | tool/getNumDaysInPortlet | python:3">
+                 tal:define="portlet_days request/portlet_days | tool/getNumDaysInPortlet | python: 3">
                 <label for="portlet_days"
                        i18n:translate="label_portlet_days">Número de días</label>
 
@@ -155,11 +225,12 @@
                                         tabindex tabindex/next;">
                    <option tal:repeat="num python:range(1,8)"
                            tal:attributes="value num;
-                                           selected python:test(portlet_days == num, 'selected', None)"
+                                           selected python:test(int(portlet_days) == num,
+                                                                'selected', None)"
                            tal:content="structure num" />
                 </select>
                 
-                <span>días</span>
+                <span i18n:translate="days">días</span>
             </div>
  
         </fieldset>
@@ -168,10 +239,18 @@
             <input class="context"
                    tabindex=""
                    type="submit"
-                   name="form.button.Save"
+                   name="form.button.save"
                    value="Save"
                    i18n:domain="plone"
                    i18n:attributes="value label_save;"
+                   tal:attributes="tabindex tabindex/next;" />
+            <input class="standalone"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.cancel"
+                   value="Cancel"
+                   i18n:domain="plone"
+                   i18n:attributes="value label_cancel;"
                    tal:attributes="tabindex tabindex/next;" />
         </div>
 

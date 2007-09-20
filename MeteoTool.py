@@ -16,7 +16,10 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import UniqueObject
 
 from Products.Meteo.config import *
+
 import Meteo
+import LocationsTable
+
 
 # security.declareProtected(Permission, methodNameAsString)
 # security.declarePrivate(methodNameAsString)
@@ -89,6 +92,30 @@ class MeteoTool(UniqueObject, SimpleItem):
         return min(self.numDaysInPortlet,
                    len(data["forecast"]))
 
+    security.declareProtected(CMFCorePermissions.ManagePortal, "searchLocation")
+    def searchLocation(self, search):
+        """
+        """
+        results = []
+        search = search.lower()
+        
+        for location in LocationsTable.locations:
+            name = location[1].lower()
+            if name.find(search) != -1:
+                results.append(location)
+        
+        return results
+
+    security.declareProtected(CMFCorePermissions.ManagePortal, "searchLocationByCode")
+    def searchLocationByCode(self, code):
+        """
+        """
+        for location in LocationsTable.locations:
+            if location[0] == code:
+                return location[1]
+        
+        return ""
+
     security.declareProtected(CMFCorePermissions.ManagePortal, "manageFormResults")
     def manageFormResults(self, **params) :
         """
@@ -119,7 +146,7 @@ class MeteoTool(UniqueObject, SimpleItem):
         """
         self.cache["date"] = 0
         self.cache = self.cache
-        return "Cache flushed."
+        return "Caché reiniciado."
 
     security.declarePublic("getDayOfWeek")
     def getDayOfWeek(self, date):
@@ -180,12 +207,22 @@ class MeteoTool(UniqueObject, SimpleItem):
             "minTemperature" : u"%s&nbsp;°C" % today["temp_min"],
             "dayOfWeek": self.getDayOfWeek(today["fecha"])
         }
+        
+        nowHour = int(time.strftime("%H"))
 
         for i in range(self.getMaxIndexForPortlet()):
+            # Comprobamos si la petición se realizar por la mañana o
+            # por la tarde para el primer día (hoy)
+
+            x = 0 # Por defecto se muestra predicción para antes de medio día
+           
+            if i == 0 and nowHour >= 12:
+                x = 1
+            
             forecast = data["forecast"][i]
             dData = {
-                "iconUrl" : "%s/meteo_icons/%s" % (portal_url, forecast["estado_img"][0]),
-                "iconAlternativeText" : forecast["estado_alt"][0],
+                "iconUrl" : "%s/meteo_icons/%s" % (portal_url, forecast["estado_img"][x]),
+                "iconAlternativeText" : forecast["estado_alt"][x],
                 "maxTemperature" : u"%s&nbsp;°C" % forecast["temp_max"],
                 "minTemperature" : u"%s&nbsp;°C" % forecast["temp_min"],
                 "dayOfWeek" : self.getDayOfWeek(forecast["fecha"])

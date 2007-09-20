@@ -1,5 +1,5 @@
 [validators]
-validators = 
+validators = prefs_meteo_form_validate
 
 [actions]
 action.failure=traverse_to:string:prefs_meteo_form

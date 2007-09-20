@@ -2,9 +2,13 @@
 title=Meteo Setup
 
 [validators]
+validators..search=
+validators..cancel=
 validators=prefs_meteo_form_validate
 
 [actions]
+action.success..search=traverse_to:string:prefs_meteo_form
+action.success..cancel=redirect_to:string:plone_control_panel
 action.success=traverse_to:string:prefs_meteo_set
 action.failure=traverse_to:string:prefs_meteo_form
 
