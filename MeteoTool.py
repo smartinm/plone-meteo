@@ -16,12 +16,9 @@ from Products.Meteo.config import *
 import Meteo
 import LocationsTable
 
-# Create a Custom Tool
-# http://plone.org/documentation/how-to/create-a-tool/
 
 class MeteoTool(UniqueObject, SimpleItem):
     """
-        Enable Plone to ask a weather forecast server.
     """
     id = 'meteo_tool'
     meta_type = 'Meteo Tool'
@@ -33,7 +30,6 @@ class MeteoTool(UniqueObject, SimpleItem):
     security.declarePrivate('manage_afterAdd')
     def manage_afterAdd(self, item, container) :
         """
-            Create default structures
         """
         SimpleItem.manage_afterAdd(self, item, container)
 
@@ -124,7 +120,6 @@ class MeteoTool(UniqueObject, SimpleItem):
     security.declareProtected(permissions.ManagePortal, "manageFormResults")
     def manageFormResults(self, **params) :
         """
-            Update the conf values
         """
         purgeCache = False
 
@@ -140,15 +135,35 @@ class MeteoTool(UniqueObject, SimpleItem):
             
         if purgeCache and hasattr(self, "cache"):
             self.flushCache()
+        
+        return "manageFormResults success"
     
     security.declareProtected(permissions.ManagePortal, "flushCache")
     def flushCache(self):
         """
-            handy method to flush cache
         """
         self.cache["date"] = 0
         self.cache["timeout"] = 0
         self.cache = self.cache
+        
+        return "flushCache success"
+
+    security.declareProtected(permissions.ManagePortal, "renewCache")
+    def renewCache(self, timeout=0):
+        """
+        """
+        LOGGER.info("renewCache: forzando una petición al servidor inm.es")
+        
+        try:
+            data = Meteo.local_weather(self.locationCode, timeout)
+            self.cache["data"] = data
+            self.cache["date"] = time.time()
+            self.cache["timeout"] = 0
+            self.cache = self.cache
+        except:
+            return "renewCache failed"
+        
+        return "renewCache success"
 
     security.declarePublic("getDayOfWeek")
     def getDayOfWeek(self, date):
@@ -241,28 +256,36 @@ class MeteoTool(UniqueObject, SimpleItem):
 
             Run Meteo.py if you want a sample dictionnary.
         """
-        if self.cache["timeout"] + self.timeoutDuration > time.time():
-            LOGGER.info("getWeatherData::timeout")
-            return {"error" : "server down?"}
+        now = time.time()
         
-        elif self.cache["date"] + self.cacheDuration < time.time():
-            LOGGER.info("getWeatherData::update")
-            
+        if self.cache["timeout"] + self.timeoutDuration > now:
+            #LOGGER.info("getWeatherData: use timeout cache")
+            if self.cache.has_key("data"):
+                return self.cache["data"]
+            else:
+                return {"error" : "¿servidor caido?"}
+        
+        elif self.cache["date"] + self.cacheDuration < now:
+            #LOGGER.info("getWeatherData: cache has expired")
             ## cache has expired
             try:
                 data = Meteo.local_weather(self.locationCode)
                 self.cache["data"] = data
-                self.cache["date"] = time.time()
+                self.cache["date"] = now
                 self.cache = self.cache
             
             except IOError, e:
-                self.cache["timeout"] = time.time()
-                return {"error" : "server down?"}
+                self.cache["timeout"] = now
+
+                if self.cache.has_key("data"):
+                    return self.cache["data"]
+                else:
+                    return {"error" : "¿servidor caido?"}
                 
             except RuntimeError, e:
                 return {"error" : e}
         else:
-            LOGGER.info("getWeatherData::cache")
+            #LOGGER.info("getWeatherData: use data cache")
             data = self.cache["data"]
             
         return data

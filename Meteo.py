@@ -170,10 +170,7 @@ def parse_forecast(forecast_table):
 # API Pública
 ########################################################
 
-def local_weather(location_code):
-    # set default timeout in 10 seconds
-    socket.setdefaulttimeout(10)
-    
+def local_weather(location_code, timeout=10):
     url = SERVER_URL % location_code
     
     warn_msg = None
@@ -183,14 +180,20 @@ def local_weather(location_code):
     forecast = None
     
     try:
-        data_stream = urllib2.urlopen(url)
-    
-    except urllib2.URLError, e:
-        raise IOError, e
-    
-    except Exception:
-        error_message = "Could not contact server."
-        raise RuntimeError, error_message
+        if timeout:
+            oldtimeout = socket.getdefaulttimeout()
+            socket.setdefaulttimeout(timeout)
+
+        try:
+            data_stream = urllib2.urlopen(url)
+        except urllib2.URLError, e:
+            raise IOError, e
+        except Exception:
+            error_message = "Could not contact server."
+            raise RuntimeError, error_message
+    finally:
+        if timeout:
+            socket.setdefaulttimeout(oldtimeout)
     
     try:
         soup = BeautifulSoup(data_stream,
