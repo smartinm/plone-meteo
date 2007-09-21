@@ -25,6 +25,7 @@ __copyright__ = "Copyright (c) 2007 Sergio Martín"
 __license__ = "GPL"
 
 import re
+import socket
 import urllib2
 
 from BeautifulSoup import BeautifulSoup
@@ -170,6 +171,9 @@ def parse_forecast(forecast_table):
 ########################################################
 
 def local_weather(location_code):
+    # set default timeout in 10 seconds
+    socket.setdefaulttimeout(10)
+    
     url = SERVER_URL % location_code
     
     warn_msg = None
@@ -180,7 +184,11 @@ def local_weather(location_code):
     
     try:
         data_stream = urllib2.urlopen(url)
-    except:
+    
+    except urllib2.URLError, e:
+        raise IOError, e
+    
+    except Exception:
         error_message = "Could not contact server."
         raise RuntimeError, error_message
     
@@ -199,6 +207,7 @@ def local_weather(location_code):
         forecast = parse_forecast(tables[2])
         
         data_stream.close()
+        
     except:
         error_message = "Error parsing html."
         raise RuntimeError, error_message

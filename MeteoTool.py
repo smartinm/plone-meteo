@@ -1,17 +1,13 @@
 # -*- coding: utf-8 -*-
 import time
-import re
-import os
-import urllib2
 
 from AccessControl import ClassSecurityInfo
 from AccessControl import getSecurityManager
 from Globals import InitializeClass
 from OFS.SimpleItem import SimpleItem
 from OFS.PropertyManager import PropertyManager
-from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
-from Products.CMFCore import permissions as CMFCorePermissions
+from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName 
 from Products.CMFCore.utils import UniqueObject
 
@@ -19,12 +15,6 @@ from Products.Meteo.config import *
 
 import Meteo
 import LocationsTable
-
-
-# security.declareProtected(Permission, methodNameAsString)
-# security.declarePrivate(methodNameAsString)
-# security.declarePublic(methodNameAsString)
-# default manager permission is CMFCorePermissions.ManagePortal
 
 # Create a Custom Tool
 # http://plone.org/documentation/how-to/create-a-tool/
@@ -49,8 +39,17 @@ class MeteoTool(UniqueObject, SimpleItem):
 
         self.locationCode = ""
         
-        # update every two hours
-        self.cacheDuration = 60 * 60 * 2
+        if CACHE_DURATION_IN_HOURS < 1:
+            duration = 1
+        elif CACHE_DURATION_IN_HOURS > 24:
+            duration = 24
+        else:
+            duration = CACHE_DURATION_IN_HOURS
+            
+        self.cacheDuration = 60 * 60 * duration
+        
+        # 5 minutos para al cache timeout
+        self.timeoutDuration = 60 * 5
         
         self.numDaysInPortlet = 3
         
@@ -58,6 +57,7 @@ class MeteoTool(UniqueObject, SimpleItem):
 
         self.cache = {
             "date" : 0,
+            "timeout" : 0,
         }
 
     security.declarePublic("getLocationCode")
@@ -92,12 +92,17 @@ class MeteoTool(UniqueObject, SimpleItem):
         return min(self.numDaysInPortlet,
                    len(data["forecast"]))
 
-    security.declareProtected(CMFCorePermissions.ManagePortal, "searchLocation")
+    security.declareProtected(permissions.ManagePortal, "searchLocation")
     def searchLocation(self, search):
         """
         """
         results = []
         search = search.lower()
+        search = search.replace('á','a')
+        search = search.replace('é','e')
+        search = search.replace('í','i')
+        search = search.replace('ó','o')
+        search = search.replace('ú','u')
         
         for location in LocationsTable.locations:
             name = location[1].lower()
@@ -106,7 +111,7 @@ class MeteoTool(UniqueObject, SimpleItem):
         
         return results
 
-    security.declareProtected(CMFCorePermissions.ManagePortal, "searchLocationByCode")
+    security.declareProtected(permissions.ManagePortal, "searchLocationByCode")
     def searchLocationByCode(self, code):
         """
         """
@@ -116,7 +121,7 @@ class MeteoTool(UniqueObject, SimpleItem):
         
         return ""
 
-    security.declareProtected(CMFCorePermissions.ManagePortal, "manageFormResults")
+    security.declareProtected(permissions.ManagePortal, "manageFormResults")
     def manageFormResults(self, **params) :
         """
             Update the conf values
@@ -134,19 +139,16 @@ class MeteoTool(UniqueObject, SimpleItem):
             self.portletType = params["portletType"]
             
         if purgeCache and hasattr(self, "cache"):
-            self.cache["date"] = 0
-            self.cache = self.cache
-
-        return ("pwf_config_ok", "success")
+            self.flushCache()
     
-    security.declareProtected(CMFCorePermissions.ManagePortal, "flushCache")
+    security.declareProtected(permissions.ManagePortal, "flushCache")
     def flushCache(self):
         """
             handy method to flush cache
         """
         self.cache["date"] = 0
+        self.cache["timeout"] = 0
         self.cache = self.cache
-        return "Caché reiniciado."
 
     security.declarePublic("getDayOfWeek")
     def getDayOfWeek(self, date):
@@ -155,19 +157,19 @@ class MeteoTool(UniqueObject, SimpleItem):
         dayOfWeek = ""
         
         if date.startswith(u'Lun'):
-            dayOfWeek = u"Lunes"
+            dayOfWeek = u"Monday"
         elif date.startswith(u'Mar'):
-            dayOfWeek = u"Martes"
+            dayOfWeek = u"Tuesday"
         elif date.startswith(u'Mié'):
-            dayOfWeek = u"Miércoles"
+            dayOfWeek = u"Wednesday"
         elif date.startswith(u'Jue'):
-            dayOfWeek = u"Jueves"
+            dayOfWeek = u"Thursday"
         elif date.startswith(u'Vie'):
-            dayOfWeek = u"Viernes"
+            dayOfWeek = u"Friday"
         elif date.startswith(u'Sáb'):
-            dayOfWeek = u"Sabado"
+            dayOfWeek = u"Saturday"
         elif date.startswith(u'Dom'):
-            dayOfWeek = u"Domingo"
+            dayOfWeek = u"Sunday"
 
         return dayOfWeek
 
@@ -239,24 +241,32 @@ class MeteoTool(UniqueObject, SimpleItem):
 
             Run Meteo.py if you want a sample dictionnary.
         """
-
-        if self.cache["date"] + self.cacheDuration < time.time():
+        if self.cache["timeout"] + self.timeoutDuration > time.time():
+            LOGGER.info("getWeatherData::timeout")
+            return {"error" : "server down?"}
+        
+        elif self.cache["date"] + self.cacheDuration < time.time():
+            LOGGER.info("getWeatherData::update")
+            
             ## cache has expired
             try:
                 data = Meteo.local_weather(self.locationCode)
                 self.cache["data"] = data
                 self.cache["date"] = time.time()
                 self.cache = self.cache
-
+            
+            except IOError, e:
+                self.cache["timeout"] = time.time()
+                return {"error" : "server down?"}
+                
             except RuntimeError, e:
-                return {
-                    "error" : e,
-                }
+                return {"error" : e}
         else:
+            LOGGER.info("getWeatherData::cache")
             data = self.cache["data"]
+            
         return data
 
-    
     security.declarePublic("adminLink")
     def adminLink(self):
         """
