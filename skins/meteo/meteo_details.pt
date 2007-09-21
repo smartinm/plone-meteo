@@ -2,7 +2,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      xml:lang="en" lang="en"
+      xml:lang="es" lang="es"
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="meteo">
 
@@ -18,10 +18,12 @@
             tal:define="tool here/meteo_tool;
                         weather tool/getWeatherData;">
 
-  <h1>Información meteorológica para los próximos 7 días</h1>
+  <h1 i18n:translate="meteo_details_heading">
+    Weather information for the next seven days
+  </h1>
 
   <tal:block condition="weather/error|nothing">
-    <div id="inmWrapper">
+    <div id="inmWrapperIframe">
         <iframe src=""
                 name="inmFrame"
                 id="inmFrame"
@@ -31,7 +33,6 @@
                 scrolling="no"
                 width="703px"
                 height="541px"
-                frameborder="0"
                 tal:attributes="src tool/getLocationUrl">
         </iframe>
     </div>
@@ -57,11 +58,14 @@
 
       </tr>
       <tr>
-      <td width="450" class="titfil">
-       (<span tal:content="structure weather/altitude">altitude</span> respecto al nivel del mar)
+      <td width="450" class="titfil"
+          i18n:translate="meteo_deatils_altitude">
+       (<span tal:content="structure weather/altitude"
+              i18n:name="altitud">altitud</span> above sea level)
       </td>
-      <td width="218" class="titfilright_9">
-        (hora local peninsular)
+      <td width="218" class="titfilright_9"
+          i18n:translate="meteo_deatils_localtime">
+        (Central European Summer Time, CEST)
       </td>
       </tr>
 
@@ -72,8 +76,9 @@
     <td colspan="8" width="100%">
     <table border="0" cellspacing="5" cellpadding="3" width="100%">
       <tr>
-        <td class="titfil2">
-          Fecha
+        <td class="titfil2"
+            i18n:translate="meteo_details_head_date">
+          Date
         </td>
         <tal:loop repeat="day firstDays">
           <td class="titfilcenter" valign="top" colspan="2">
@@ -89,8 +94,9 @@
       </tr>
 
       <tr>
-        <td class="titfil2">
-          Estado del cielo
+        <td class="titfil2"
+            i18n:translate="meteo_details_head_state">
+          Sky status
         </td>
         <tal:loop repeat="day firstDays">
           <td align="center">
@@ -121,8 +127,9 @@
       </tr>
 
       <tr>
-        <td class="titfil2">
-          Prob. precipitación (%)
+        <td class="titfil2"
+            i18n:translate="meteo_details_head_rainprob">
+          Rainfall probability (%)
         </td>
         <tal:loop repeat="day firstDays">
           <td align="center" colspan="2">
@@ -138,8 +145,9 @@
       </tr>
       
       <tr>
-        <td class="titfil2">
-          T. Máxima (°C)
+        <td class="titfil2"
+            i18n:translate="meteo_details_head_tempmax">
+          Max. Temperature (ºC)
         </td>
         
         <tal:loop repeat="day firstDays">
@@ -156,8 +164,9 @@
       </tr>
       
       <tr>
-        <td class="titfil2">
-          T. Mínima (°C)
+        <td class="titfil2"
+            i18n:translate="meteo_details_head_tempmin">
+          Min. Temperature (ºC)
         </td>
 
         <tal:loop repeat="day firstDays">
@@ -174,8 +183,9 @@
       </tr>
       
       <tr>
-        <td class="titfil2" rowspan="2">
-          Viento<br /><br />
+        <td class="titfil2" rowspan="2"
+            i18n:translate="meteo_details_head_wind">
+          Wind<br /><br />
           (km/h)
         </td>
 
@@ -228,8 +238,9 @@
       </tr>
       
       <tr>
-        <td class="titfil2">
-          Índice UV Máximo
+        <td class="titfil2"
+            i18n:translate="meteo_details_head_uvindex">
+          Max. UV index
         </td>
 
         <tal:loop repeat="day firstDays">
@@ -247,16 +258,21 @@
   </div>
   </tal:block>
   
-  <div class="meteoLegal">
-    Predicción meteorológica proporcionada por el
+  <div class="meteoLegal"
+       i18n:translate="meteo_details_legal">
+    Forecast are provided by
+    <span i18n:name="inm-link">
     <a href="http://www.inm.es"
        alt="http://www.inm.es"
-       title="http://www.inm.es">Instituto Nacional de Meteorología</a>.
+       title="http://www.inm.es"
+       i18n:translate="inm">National Institute of Meteorology of Spain</a>.
+     </span>
   </div>
   
+  <br />
   <div class="discreet">
     <a href="javascript:history.back()"
-        i18n:translate="meteo_back">Volver a la página anterior</a>
+        i18n:translate="meteo_details_back">Go back page</a>
   </div>
   
 </metal:main>

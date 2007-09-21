@@ -4,3 +4,6 @@ validators = prefs_meteo_form_validate
 [actions]
 action.failure=traverse_to:string:prefs_meteo_form
 action.success=redirect_to:string:plone_control_panel
+
+[security]
+View = 0:Manager

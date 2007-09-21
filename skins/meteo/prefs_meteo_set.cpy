@@ -16,9 +16,13 @@ REQUEST=context.REQUEST
 
 meteoTool = getToolByName(context, 'meteo_tool', None)
 
-(portal_msg, status) = meteoTool.manageFormResults(locationCode=location_code,
-                                                   numDaysInPortlet=int(portlet_days),
-                                                   portletType=portlet_type)
+meteoTool.manageFormResults(locationCode=location_code,
+                            numDaysInPortlet=int(portlet_days),
+                            portletType=portlet_type)
 
+status = "success"
+portal_msg = "Meteo Configuration has been successfully updated."
 #context.plone_utils.addPortalMessage(_(u'Mail Host Updated'))
-return state.set(status=status, portal_status_message=portal_msg)
+
+return state.set(status=status,
+                 portal_status_message=portal_msg)

@@ -1,6 +1,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
-from Products.Meteo.config import PORTLET_SINGLE, PORTLET_MULTIPLE
+from Products.Meteo.config import PORTLET_SINGLE
+from Products.Meteo.config import PORTLET_MULTIPLE
 
 request = context.REQUEST
 

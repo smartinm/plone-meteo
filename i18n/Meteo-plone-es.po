@@ -1,0 +1,49 @@
+# Gettext Message File for Meteo
+# Sergio Martín <smartin@gmv.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2007-09-20 16:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: es\n"
+"Language-Name: Spanish\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+
+#: ..\skins\meteo\prefs_meteo_flush.py:13
+msgid "Cache flushed."
+msgstr "Caché reiniciada."
+
+#: ..\skins\meteo\prefs_meteo_set.cpy
+msgid "Meteo Configuration has been successfully updated."
+msgstr "La configuración de Meteo ha sido actualizada con éxito."
+
+msgid "Meteo Configuration"
+msgstr "Configuración de Meteo"
+
+msgid "Monday"
+msgstr "Lunes"
+
+msgid "Tuesday"
+msgstr "Martes"
+
+msgid "Wednesday"
+msgstr "Miércoles"
+
+msgid "Thursday"
+msgstr "Jueves"
+
+msgid "Friday"
+msgstr "Viérnes"
+
+msgid "Saturday"
+msgstr "Sábado"
+
+msgid "Sunday"
+msgstr "Domingo"
