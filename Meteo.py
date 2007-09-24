@@ -170,7 +170,7 @@ def parse_forecast(forecast_table):
 # API Pública
 ########################################################
 
-def local_weather(location_code, timeout=10):
+def local_weather(location_code, timeout=None):
     url = SERVER_URL % location_code
     
     warn_msg = None
@@ -180,7 +180,7 @@ def local_weather(location_code, timeout=10):
     forecast = None
     
     try:
-        if timeout:
+        if timeout > 0:
             oldtimeout = socket.getdefaulttimeout()
             socket.setdefaulttimeout(timeout)
 
@@ -189,10 +189,10 @@ def local_weather(location_code, timeout=10):
         except urllib2.URLError, e:
             raise IOError, e
         except Exception:
-            error_message = "Could not contact server."
+            error_message = "Could not contact server"
             raise RuntimeError, error_message
     finally:
-        if timeout:
+        if timeout > 0:
             socket.setdefaulttimeout(oldtimeout)
     
     try:
@@ -212,7 +212,7 @@ def local_weather(location_code, timeout=10):
         data_stream.close()
         
     except:
-        error_message = "Error parsing html."
+        error_message = "Error parsing HTML"
         raise RuntimeError, error_message
  
     return {

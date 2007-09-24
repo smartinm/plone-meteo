@@ -3,9 +3,10 @@ import time
 
 from AccessControl import ClassSecurityInfo
 from AccessControl import getSecurityManager
+
 from Globals import InitializeClass
+
 from OFS.SimpleItem import SimpleItem
-from OFS.PropertyManager import PropertyManager
 
 from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName 
@@ -35,17 +36,7 @@ class MeteoTool(UniqueObject, SimpleItem):
 
         self.locationCode = ""
         
-        if CACHE_DURATION_IN_HOURS < 1:
-            duration = 1
-        elif CACHE_DURATION_IN_HOURS > 24:
-            duration = 24
-        else:
-            duration = CACHE_DURATION_IN_HOURS
-            
-        self.cacheDuration = 60 * 60 * duration
-        
-        # 5 minutos para al cache timeout
-        self.timeoutDuration = 60 * 5
+        self.cacheDuration = 60 * 60 * CACHE_DURATION_IN_HOURS
         
         self.numDaysInPortlet = 3
         
@@ -53,7 +44,7 @@ class MeteoTool(UniqueObject, SimpleItem):
 
         self.cache = {
             "date" : 0,
-            "timeout" : 0,
+            "data" : {"error" : "No data"},
         }
 
     security.declarePublic("getLocationCode")
@@ -133,7 +124,7 @@ class MeteoTool(UniqueObject, SimpleItem):
         if self.portletType != params["portletType"]:
             self.portletType = params["portletType"]
             
-        if purgeCache and hasattr(self, "cache"):
+        if purgeCache:
             self.flushCache()
         
         return "manageFormResults success"
@@ -143,27 +134,24 @@ class MeteoTool(UniqueObject, SimpleItem):
         """
         """
         self.cache["date"] = 0
-        self.cache["timeout"] = 0
         self.cache = self.cache
         
         return "flushCache success"
 
     security.declareProtected(permissions.ManagePortal, "renewCache")
-    def renewCache(self, timeout=0):
+    def renewCache(self, timeout=None):
         """
         """
-        LOGGER.info("renewCache: forzando una petición al servidor inm.es")
-        
+        result = "renewCache success"
         try:
             data = Meteo.local_weather(self.locationCode, timeout)
             self.cache["data"] = data
             self.cache["date"] = time.time()
-            self.cache["timeout"] = 0
             self.cache = self.cache
         except:
-            return "renewCache failed"
+            result = "renewCache failed"
         
-        return "renewCache success"
+        return result
 
     security.declarePublic("getDayOfWeek")
     def getDayOfWeek(self, date):
@@ -253,39 +241,32 @@ class MeteoTool(UniqueObject, SimpleItem):
         """
             Return the complete dictionnary returned by Meteo.py.
             More details can be found in the docstrings of local_weather()
-
-            Run Meteo.py if you want a sample dictionnary.
         """
         now = time.time()
+        cacheTime = self.cache["date"]
+        cacheDate = time.ctime(cacheTime)
         
-        if self.cache["timeout"] + self.timeoutDuration > now:
-            #LOGGER.info("getWeatherData: use timeout cache")
-            if self.cache.has_key("data"):
-                return self.cache["data"]
-            else:
-                return {"error" : "¿servidor caido?"}
-        
-        elif self.cache["date"] + self.cacheDuration < now:
-            #LOGGER.info("getWeatherData: cache has expired")
+        if cacheTime + self.cacheDuration < now:
             ## cache has expired
+            LOGGER.info("getWeatherData: cache has expired (cache date: %s)",
+                        cacheDate)
+            
             try:
-                data = Meteo.local_weather(self.locationCode)
+                data = Meteo.local_weather(self.locationCode,
+                                           TIMEOUT_IN_SECONDS)
                 self.cache["data"] = data
                 self.cache["date"] = now
                 self.cache = self.cache
             
             except IOError, e:
-                self.cache["timeout"] = now
-
-                if self.cache.has_key("data"):
-                    return self.cache["data"]
-                else:
-                    return {"error" : "¿servidor caido?"}
+                # Si hay un error conectando al servidor se utiliza la cache
+                data = self.cache["data"]
+                self.cache["date"] = now
+                self.cache = self.cache
                 
             except RuntimeError, e:
                 return {"error" : e}
         else:
-            #LOGGER.info("getWeatherData: use data cache")
             data = self.cache["data"]
             
         return data

@@ -18,5 +18,8 @@ GLOBALS = globals()
 PORTLET_SINGLE   = 'single'
 PORTLET_MULTIPLE = 'multiple'
 
-# Configurable (min 1, max 24)
+# Cache duration in hours
 CACHE_DURATION_IN_HOURS = 2
+
+# Timeout on connect to inm.es (no timeout: None)
+TIMEOUT_IN_SECONDS = 20
