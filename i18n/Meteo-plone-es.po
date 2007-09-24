@@ -26,24 +26,3 @@ msgstr "La configuración de Meteo ha sido actualizada con éxito."
 
 msgid "Meteo Configuration"
 msgstr "Configuración de Meteo"
-
-msgid "Monday"
-msgstr "Lunes"
-
-msgid "Tuesday"
-msgstr "Martes"
-
-msgid "Wednesday"
-msgstr "Miércoles"
-
-msgid "Thursday"
-msgstr "Jueves"
-
-msgid "Friday"
-msgstr "Viérnes"
-
-msgid "Saturday"
-msgstr "Sábado"
-
-msgid "Sunday"
-msgstr "Domingo"

@@ -221,3 +221,24 @@ msgstr "Fuente: INM ${inm-link}"
 #: ..\skins\meteo\prefs_meteo_form.cpt
 msgid "code_error"
 msgstr "Código erróneo"
+
+msgid "Monday"
+msgstr "Lunes"
+
+msgid "Tuesday"
+msgstr "Martes"
+
+msgid "Wednesday"
+msgstr "Miércoles"
+
+msgid "Thursday"
+msgstr "Jueves"
+
+msgid "Friday"
+msgstr "Viérnes"
+
+msgid "Saturday"
+msgstr "Sábado"
+
+msgid "Sunday"
+msgstr "Domingo"
