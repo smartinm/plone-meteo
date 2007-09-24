@@ -1,0 +1,5 @@
+Changelog for Meteo
+
+Meteo 0.1.0 - 2007/09/24
+
+  - Initial public release

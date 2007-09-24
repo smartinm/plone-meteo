@@ -142,6 +142,8 @@ class MeteoTool(UniqueObject, SimpleItem):
     def renewCache(self, timeout=None):
         """
         """
+        LOGGER.info("renewCache: manual update cache (timeout: %d)", timeout)
+        
         result = "renewCache success"
         try:
             data = Meteo.local_weather(self.locationCode, timeout)
@@ -187,6 +189,14 @@ class MeteoTool(UniqueObject, SimpleItem):
                 maxTemperature : the max temperature pretty formated
                 minTemperature : the min temperature pretty formated
                 dayOfWeek : a little label showing the day of week
+            today : a dictonary contains the following elements
+                iconUrlAM
+                iconUrlPM
+                iconAlternativeTextAM
+                iconAlternativeTextPM
+                maxTemperature
+                minTemperature
+                dayOfWeek
         """
         data = self.getWeatherData()
 
@@ -216,11 +226,10 @@ class MeteoTool(UniqueObject, SimpleItem):
         nowHour = int(time.strftime("%H"))
 
         for i in range(self.getMaxIndexForPortlet()):
-            # Comprobamos si la petición se realizar por la mañana o
-            # por la tarde para el primer día (hoy)
-
             x = 0 # Por defecto se muestra predicción para antes de medio día
-           
+
+            # Para el día actual, mostramos la predicción de la mañana o de la
+            # tarde según a que hora se realiza la petición.
             if i == 0 and nowHour >= 12:
                 x = 1
             
@@ -244,12 +253,11 @@ class MeteoTool(UniqueObject, SimpleItem):
         """
         now = time.time()
         cacheTime = self.cache["date"]
-        cacheDate = time.ctime(cacheTime)
         
         if cacheTime + self.cacheDuration < now:
-            ## cache has expired
+            # Caché ha expirado
             LOGGER.info("getWeatherData: cache has expired (cache date: %s)",
-                        cacheDate)
+                        time.ctime(cacheTime))
             
             try:
                 data = Meteo.local_weather(self.locationCode,
@@ -260,6 +268,7 @@ class MeteoTool(UniqueObject, SimpleItem):
             
             except IOError, e:
                 # Si hay un error conectando al servidor se utiliza la cache
+                LOGGER.info("getWeatherData: IOError (%s)", e)
                 data = self.cache["data"]
                 self.cache["date"] = now
                 self.cache = self.cache

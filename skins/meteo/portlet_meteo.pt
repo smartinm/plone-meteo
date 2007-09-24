@@ -24,7 +24,7 @@
     <div style="color: #FF7400"
          tal:condition="tool/adminLink"
          i18n:translate="portlet_check_location">
-      Please, check of location code.
+      Please, check location code.
     </div>
     <div style="font-style: italic;"
          tal:condition="tool/adminLink"

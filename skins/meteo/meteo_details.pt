@@ -53,7 +53,7 @@
               tal:content="structure python:location[0] + ' &ndash; ' + location[1]">location</span>
       </td>
       <td width="218" class="titfilright_11">
-        Elaborado: <span tal:content="structure weather/date">date</span>
+        <span tal:content="structure weather/date">date</span>
       </td>
 
       </tr>
