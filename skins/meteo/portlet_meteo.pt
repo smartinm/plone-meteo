@@ -82,7 +82,8 @@
       <tal:block define="dayData weather/today">
         <tr>
           <td colspan="2">
-            <span tal:content="dayData/dayOfWeek"></span>
+            <span tal:content="dayData/dayOfWeek"
+                  i18n:translate=""></span>
           </td>
         </tr>
         <tr>
