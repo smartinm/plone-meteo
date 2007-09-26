@@ -2,20 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Meteo
-
-Módulo para obtener la predicción meteorológica por localidades ofrecida por
-el Instituto Nacional de Meteorologia (www.inm.es), utilizando BeautifulSoup
-para parsear el código HTML.
-
-Tenga en cuenta que este módulo está muy ligado al código HTML devuelto por
-la página web del Instituto Nacional de Meteorologia y es posible que deje
-funcionar ante cualquier cambio en el mismo. Sin embargo, para su tranquilidad
-la página no ha cambiado durante años.
-
-Dependencias:
-	BeautifulSoup [http://www.crummy.com/software/BeautifulSoup]
-
-Meteo
 Copyright (C) 2007 GMV SGI Team <http://www.gmv-sgi.es>
  
 This program is free software; you can redistribute it and/or
@@ -31,9 +17,21 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
 USA
-  
+
+Módulo para obtener la predicción meteorológica por localidades ofrecida por
+el Instituto Nacional de Meteorologia (www.inm.es), utilizando BeautifulSoup
+para parsear el código HTML.
+
+Tenga en cuenta que este módulo está muy ligado al código HTML devuelto por
+la página web del Instituto Nacional de Meteorologia y es posible que deje
+funcionar ante cualquier cambio en el mismo. Sin embargo, para su tranquilidad
+la página no ha cambiado durante años.
+
+Dependencias:
+	BeautifulSoup [http://www.crummy.com/software/BeautifulSoup]
+ 
 $Id$
-  
+
 """
 
 __author__ = "Sergio Martín (smartin@gmv.com)"
