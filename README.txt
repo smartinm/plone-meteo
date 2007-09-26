@@ -30,7 +30,7 @@ Features
  
 License
 
-  Copyright (C) 2007 GMV SGI Team <http://www.gmv-sgi.es>
+  Copyright (C) 2007 GMV SGI Team ("www.gmv-sgi.es":http://www.gmv-sgi.es)
  
   This program is free software; you can redistribute it and/or
   modify it under the terms of version 2 of the GNU General Public
@@ -45,7 +45,13 @@ License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
   USA
+
+  Meteo is based on "Weather Forecast for Plone":http://plone.org/products/ploneweatherforecast
+  original code source.
+
+  The icons used by the product have been provided by National Institute of
+  Meteorology website.
   
 Credits
 
-	Developed by Sergio Martín Morillas <smartin@gmv.com>
+  Developed by Sergio MartÃ­n Morillas ("smartin@gmv.com":mailto:smartin@gmv.com)
