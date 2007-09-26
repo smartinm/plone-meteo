@@ -54,20 +54,3 @@ Guía rápida de uso
   
   * Por defecto el portlet aparecerá en la columna derecha, puedes cambiar su
     posición desde el Zope Management Interface (ZMI).
-
-Licencia
-
-  Copyright (c) 2007 Sergio Martín Morillas
-  
-  Este producto está licenciado bajo los términos de la licencia:
-  "GNU General Public License Version 2":http://www.gnu.org/licenses/gpl.html
-  
-  Parte de este producto está basado en el código de Weather Forecast for Plone
-  ("The Ingeniweb team":http://www.ingeniweb.com)
-
-  Los iconos usados por este producto son proporcionados por la página web del INM.
-  
-Créditos
-
-  Sergio Martín Morillas ("smartin@gmv.com":mailto:smartin@gmv.com)
-  -- GMV Soluciones Globales Internet ("www.gmv-sgi.com":http://www.gmv-sgi.com)

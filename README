@@ -27,20 +27,3 @@ Features
    possible flush cache data.
  
  * Meteo is translated in english and spanish.
-
-License
-
-  Copyright (c) 2007 Sergio Martín Morillas
-  
-  This software is released under the GPL 2:
-  "GNU General Public License Version 2":http://www.gnu.org/licenses/gpl.html
-
-  Meteo is based on Weather Forecast for Plone original code source.
-  ("The Ingeniweb team":http://www.ingeniweb.com)
-
-  The icons used by the product have been provided by INM website.
-  
-Credits
-
-  Sergio Martín Morillas ("smartin@gmv.com":mailto:smartin@gmv.com)
-  -- GMV Soluciones Globales Internet ("www.gmv-sgi.com":http://www.gmv-sgi.com)
