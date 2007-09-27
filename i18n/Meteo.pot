@@ -127,7 +127,7 @@ msgstr ""
 msgid "meteo_deatils_altitude"
 msgstr ""
 
-#. Default: "(Central European Summer Time, CEST)"
+#. Default: "(Central European Time, CET)"
 #: ..\skins\meteo\meteo_details.pt
 msgid "meteo_deatils_localtime"
 msgstr ""

@@ -105,10 +105,15 @@ class MeteoTool(UniqueObject, SimpleItem):
         """
         results = []
         search = search.lower()
+        search = search.replace('Á','a')
         search = search.replace('á','a')
+        search = search.replace('É','e')
         search = search.replace('é','e')
+        search = search.replace('Í','i')
         search = search.replace('í','i')
+        search = search.replace('Ó','o')
         search = search.replace('ó','o')
+        search = search.replace('Ú','u')
         search = search.replace('ú','u')
         
         for location in LocationsTable.locations:
@@ -234,8 +239,12 @@ class MeteoTool(UniqueObject, SimpleItem):
 
         today = data["forecast"][0]
         weather["today"] = {
-            "iconUrlAM" : "%s/meteo_icons/%s" % (portal_url, today["estado_img"][0]),
-            "iconUrlPM" : "%s/meteo_icons/%s" % (portal_url, today["estado_img"][1]),
+            "iconUrlAM" : "%s/meteo_icons/%s" % (portal_url,
+                                                 today["estado_img"][0]),
+                                                 
+            "iconUrlPM" : "%s/meteo_icons/%s" % (portal_url,
+                                                 today["estado_img"][1]),
+                                                 
             "iconAlternativeTextAM" : today["estado_alt"][0],
             "iconAlternativeTextPM" : today["estado_alt"][1],
             "maxTemperature" : u"%s&nbsp;°C" % today["temp_max"],
@@ -255,7 +264,9 @@ class MeteoTool(UniqueObject, SimpleItem):
             
             forecast = data["forecast"][i]
             dData = {
-                "iconUrl" : "%s/meteo_icons/%s" % (portal_url, forecast["estado_img"][x]),
+                "iconUrl" : "%s/meteo_icons/%s" % (portal_url,
+                                                   forecast["estado_img"][x]),
+                                                   
                 "iconAlternativeText" : forecast["estado_alt"][x],
                 "maxTemperature" : u"%s&nbsp;°C" % forecast["temp_max"],
                 "minTemperature" : u"%s&nbsp;°C" % forecast["temp_min"],

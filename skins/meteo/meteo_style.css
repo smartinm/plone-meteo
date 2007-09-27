@@ -33,12 +33,28 @@
 	margin: 1em 0;
 }
 
+.meteoSource {
+	text-align: right;
+}
+
+.meteoError {
+	color: #FF7400;
+}
+
 .blue {
 	color: blue;
 }
 
 .red {
 	color: red;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.rightText {
+	text-align: right;
 }
 
 .centerText {

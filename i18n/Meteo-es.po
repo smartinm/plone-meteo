@@ -127,7 +127,7 @@ msgstr "Apariencia del portlet"
 msgid "meteo_deatils_altitude"
 msgstr "(${altitud} respecto al nivel del mar)"
 
-#. Default: "(Central European Summer Time, CEST)"
+#. Default: "(Central European Time, CET)"
 #: ..\skins\meteo\meteo_details.pt
 msgid "meteo_deatils_localtime"
 msgstr "(hora local peninsular)"

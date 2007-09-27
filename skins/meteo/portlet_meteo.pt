@@ -17,19 +17,25 @@
 
   <dd class="portletItem odd"
       id="portlet-weather-location"
+      tal:define="isAdmin tool/adminLink;"
       tal:condition="weather/error | nothing">
+
     <div i18n:translate="portlet_error">
       No information available.
     </div>
-    <div style="color: #FF7400"
-         tal:condition="tool/adminLink"
+
+    <div class="meteoError italic"
+         tal:condition="isAdmin"
+         tal:define="error weather/error"
+         tal:content="string: ($error)">
+      (Error description)
+    </div>
+
+    <div class="meteoError"
+         tal:condition="isAdmin"
          i18n:translate="portlet_check_location">
       Please, check location code.
     </div>
-    <div style="font-style: italic;"
-         tal:condition="tool/adminLink"
-         tal:define="error weather/error"
-         tal:content="string: (Error: $error)"></div>
   </dd>
   
   <dd class="portletItem even"
@@ -128,8 +134,7 @@
     </tal:single>
 
   </dd>
-  <dd class="portletFooter discreet"
-      style="text-align: right;"
+  <dd class="portletFooter discreet rightText"
       tal:condition="not: weather/error|nothing"
       i18n:translate="portlet_source">
     Source: INM

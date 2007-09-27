@@ -76,12 +76,18 @@ def parse_tables(soup_html):
 
     return res
    
-def filename(src):
-    res = re.search("^.*/(.*?)$", src)
-    if res:
-        return res.group(1)
-    else:
-        return src
+def img_filename(img_tag):
+	if img_tag and img_tag.has_key('src'):
+		src = img_tag['src']
+		res = re.search("^.*/(.*?)$", src)
+		if res:
+		    return res.group(1)
+	return ""
+
+def img_alt(img_tag):
+	if img_tag and img_tag.has_key('alt'):
+		return img_tag['alt']
+	return ""
 
 def format_location(location):
     res = re.search("(.*) - (.*)", location)
@@ -91,7 +97,7 @@ def format_location(location):
         return location
 
 def fomat_date(date):
-    res = re.search("Elaborado: (.*)", date)
+    res = re.search(".*: (.*)", date)
     if res:
         return res.group(1)
     else:
@@ -121,60 +127,70 @@ def parse_forecast(forecast_table):
             'indice_uv'  : None,
         })
     
-    isKmh = False
+    isWindKmh = False
     for row in forecast_table:
-        name = row[0]
-    
-        if isKmh:
-            dia = 0
+    	name = row[0]
+    	if isinstance(name, basestring):
+        	name = name.lower()
+        else:
+        	name = ""
+
+        if isWindKmh:
+            day = 0
             for i in range(1,7,2):
-                forecast[dia]['viento_kmh'] = (row[i-1], row[i])
-                dia += 1
+                forecast[day]['viento_kmh'] = (row[i-1], row[i])
+                day += 1
             for i in range(7,11):
-                forecast[dia]['viento_kmh'] = (row[i-1],)
-                dia +=1
-            isKmh = False
+                forecast[day]['viento_kmh'] = (row[i-1],)
+                day +=1
+            isWindKmh = False
             
-        elif name == u'Fecha':
+        elif name.find(u'fecha') != -1:
             for i in range(7):
                 forecast[i]['fecha'] = row[i+1]
     
-        elif name == u'Estado del cielo':
-            dia = 0
+        elif name.find(u'cielo') != -1:
+            day = 0
             for i in range(1,7,2):
-                forecast[dia]['estado_img'] = (filename(row[i]['src']), filename(row[i+1]['src']))
-                forecast[dia]['estado_alt'] = (row[i]['alt'], row[i+1]['alt'])
-                dia += 1
+                forecast[day]['estado_img'] = (img_filename(row[i]),
+											   img_filename(row[i+1]))
+
+                forecast[day]['estado_alt'] = (img_alt(row[i]),
+											   img_alt(row[i+1]))
+                day += 1
             for i in range(7,11):
-                forecast[dia]['estado_img'] = (filename(row[i]['src']),)
-                forecast[dia]['estado_alt'] = (row[i]['alt'],)
-                dia +=1
+                forecast[day]['estado_img'] = (img_filename(row[i]),)
+                forecast[day]['estado_alt'] = (img_alt(row[i]),)
+                day +=1
     
-        elif name == u'Prob. precipitación (%)':
+        elif name.find(u'precipitación') != -1:
             for i in range(7):
                 forecast[i]['prob_prec'] = row[i+1]
     
-        elif name == u'T. Máxima (°C)':
+        elif name.find(u'máxima') != -1:
             for i in range(7):
                 forecast[i]['temp_max'] = row[i+1]
     
-        elif name == u'T. Mínima (°C)':
+        elif name.find(u'mínima') != -1:
             for i in range(7):
                 forecast[i]['temp_min'] = row[i+1]
     
-        elif name == u'Viento':
-            dia = 0
+        elif name.find(u'viento') != -1:
+            day = 0
             for i in range(1,7,2):
-                forecast[dia]['viento_img'] = (filename(row[i]['src']), filename(row[i+1]['src']))
-                forecast[dia]['viento_alt'] = (row[i]['alt'], row[i+1]['alt'])
-                dia += 1
+                forecast[day]['viento_img'] = (img_filename(row[i]),
+											   img_filename(row[i+1]))
+                
+                forecast[day]['viento_alt'] = (img_alt(row[i]),
+											   img_alt(row[i+1]))
+                day += 1
             for i in range(7,11):
-                forecast[dia]['viento_img'] = (filename(row[i]['src']),)
-                forecast[dia]['viento_alt'] = (row[i]['alt'],)
-                dia +=1
-            isKmh = True
+                forecast[day]['viento_img'] = (img_filename(row[i]),)
+                forecast[day]['viento_alt'] = (img_alt(row[i]),)
+                day += 1
+            isWindKmh = True # La siguiente fila son KMh del viento
     
-        elif name == u'Índice UV Máximo':
+        elif name.find(u'uv') != -1:
             for i in range(3):
                 forecast[i]['indice_uv'] = row[i+1]
     # end for
@@ -182,7 +198,7 @@ def parse_forecast(forecast_table):
 # end def
 
 ########################################################
-# API Pública
+# Public API
 ########################################################
 
 def local_weather(location_code, timeout=None):
@@ -204,18 +220,21 @@ def local_weather(location_code, timeout=None):
         except urllib2.URLError, e:
             raise IOError, e
         except Exception:
-            error_message = "Could not contact server"
+            error_message = "Failed contacting server"
             raise RuntimeError, error_message
     finally:
         if timeout > 0:
             socket.setdefaulttimeout(oldtimeout)
     
     try:
+    	# Process HTML with BeautifulSoup
         soup = BeautifulSoup(data_stream,
                              convertEntities=BeautifulSoup.HTML_ENTITIES)
         
+        # Convert parse tree in an array
         tables = parse_tables(soup.find('table'))
         
+        # Extract weather data
         warn_msg = tables[0][0][0]
         
         location = format_location(tables[1][0][0])
@@ -224,11 +243,12 @@ def local_weather(location_code, timeout=None):
         
         forecast = parse_forecast(tables[2])
         
-        data_stream.close()
-        
     except:
-        error_message = "Error parsing HTML"
+        error_message = "Failed parsing HTML"
         raise RuntimeError, error_message
+       
+    # Close data stream
+    data_stream.close()
  
     return {
         "notice"   : warn_msg,
