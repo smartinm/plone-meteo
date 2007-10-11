@@ -31,7 +31,7 @@ funcionar ante cualquier cambio en el mismo. Sin embargo, para su tranquilidad
 la página no ha cambiado durante años.
 
 Dependencias:
-	BeautifulSoup [http://www.crummy.com/software/BeautifulSoup]
+  BeautifulSoup [http://www.crummy.com/software/BeautifulSoup]
 """
 
 __author__ = "Sergio Martín Morillas (smartin@gmv.com)"

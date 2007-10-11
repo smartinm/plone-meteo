@@ -42,4 +42,4 @@ PORTLET_MULTIPLE = 'multiple'
 CACHE_DURATION_IN_HOURS = 2
 
 # Timeout on connect to inm.es (no timeout: None)
-TIMEOUT_IN_SECONDS = 20
+TIMEOUT_IN_SECONDS = 3
