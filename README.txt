@@ -4,6 +4,7 @@ Meteo
   for Spain provided by the National Institute of Meteorology
   ("www.inm.es":http://www.inm.es)
 
+
 Features
 
  * Meteo contains one portlet with a configurable look:
@@ -28,6 +29,26 @@ Features
  
  * Meteo is translated in english and spanish.
  
+
+Quickstart
+
+ * Install using the normal Plone way.
+ 
+ * Go to the Meteo Configlet and set up your location and portlet's look.
+
+ * That's all
+
+
+Proxy support
+
+ Define the http_proxy variable in the format http://host:port/. If you have to
+ login then use the format http://username:password@host:port/. To define this
+ variable add the following lines to the root login file /etc/profile:
+
+ http_proxy=http://host:port/
+ export http_proxy
+
+
 License
 
   Copyright (C) 2007 GMV SGI Team ("www.gmv-sgi.es":http://www.gmv-sgi.es)
