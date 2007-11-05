@@ -54,9 +54,3 @@ Guía rápida de uso
   
   * Por defecto el portlet aparecerá en la columna derecha, puedes cambiar su
     posición desde el Zope Management Interface (ZMI).
-
-  * Este producto se conecta al servidor web del INM para obtener los datos
-    meteorológicos, si en tu red se utiliza un proxy para salir a internet es
-    necesario que la siguiente variable de entorno de sistema esté configurada:
-    
-    http_proxy=http://host:port/
