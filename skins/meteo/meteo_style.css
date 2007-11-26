@@ -6,7 +6,6 @@
 
 #inmWrapperIframe {
 	margin-top: 1em;
-#	background-color: #ffd700;
 	width: 703px;
 	border: 1px solid
 }
@@ -41,26 +40,25 @@
 	color: #FF7400;
 }
 
-.blue {
+.meteoBlue {
 	color: blue;
 }
 
-.red {
+.meteoRed {
 	color: red;
 }
 
-.italic {
+.meteoItalic {
 	font-style: italic;
 }
 
-.rightText {
+.meteoRightText {
 	text-align: right;
 }
 
-.centerText {
+.meteoCenterText {
 	text-align: center;
 }
-
 
 <!-- INM CSS -->
 
@@ -73,9 +71,6 @@ TD.titfilgen {
 
 
 TD.titfil {
-/*   border-style: solid; */
-/*   border-width: 1px 0px 1px 1px; */
-/*   border-color: #7799DD; */
    background-color: #7799DD;
    text-align: left;
    color: #FFFFFF;
@@ -85,9 +80,6 @@ TD.titfil {
 }
 
 TD.titfil_13 {
-/*   border-style: solid; */
-/*   border-width: 1px 0px 1px 1px; */
-/*   border-color: #7799DD; */
    background-color: #7799DD;
    text-align: left;
    color: #FFFFFF;
@@ -97,9 +89,6 @@ TD.titfil_13 {
 }
 
 TD.titfil_11 {
-/*   border-style: solid; */
-/*   border-width: 1px 0px 1px 1px; */
-/*   border-color: #7799DD; */
    background-color: #7799DD;
    text-align: left;
    color: #FFFFFF;
@@ -128,9 +117,6 @@ TD.titfilcenter {
 
 TD.titfilright_11 {
    text-align: right;
-/*   border-style: solid; */
-/*   border-width: 1px 1px 1px 0px; */
-/*   border-color: #7799DD; */
    background-color: #7799DD;
    color: #FFFFFF;
    font-size: 11px;
@@ -139,9 +125,6 @@ TD.titfilright_11 {
 
 TD.titfilright_9 {
    text-align: right;
-/*   border-style: solid; */
-/*   border-width: 1px 1px 1px 0px; */
-/*   border-color: #7799DD; */
    background-color: #7799DD;
    color: #FFFFFF;
    font-size: 9px;

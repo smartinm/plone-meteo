@@ -22,20 +22,20 @@
 #
 """
 Módulo para obtener la predicción meteorológica por localidades ofrecida por
-el Instituto Nacional de Meteorologia (www.inm.es), utilizando BeautifulSoup
+el Instituto Nacional de Meteorologia (www.inm.es) utilizando BeautifulSoup
 para parsear el código HTML.
 
-Tenga en cuenta que este módulo está muy ligado al código HTML devuelto por
-la página web del Instituto Nacional de Meteorologia y es posible que deje
-funcionar ante cualquier cambio en el mismo. Sin embargo, para su tranquilidad
-la página no ha cambiado durante años.
+Este módulo está muy ligado al código HTML devuelto por la página web del
+Instituto Nacional de Meteorologia, por tanto es posible que no funcione
+correctamente ante cualquier cambio en el mismo, sin embargo se ha podido
+comprobar que no ha cambiado durante mucho tiempo.
 
 Dependencias:
   BeautifulSoup [http://www.crummy.com/software/BeautifulSoup]
 """
 
 __author__ = "Sergio Martín Morillas (smartin@gmv.com)"
-__version__ = "0.1.0"
+__version__ = "0.1.2"
 __copyright__ = "Copyright (C) 2007 GMV SGI Team <http://www.gmv-sgi.es>"
 __license__ = "GPLv2"
 

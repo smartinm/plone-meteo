@@ -34,12 +34,12 @@ SKINS_DIR = 'skins'
 # preserved. It passes to the package_home() etc.
 GLOBALS = globals()
 
-# Cache duration in hours
-CACHE_DURATION_IN_HOURS = 2
-
-# Timeout on connect to inm.es (no timeout: None)
-TIMEOUT_IN_SECONDS = 5
-
-# Please don't touch
+# Porlets internal names, please don't touch.
 PORTLET_SINGLE   = 'single'
 PORTLET_MULTIPLE = 'multiple'
+
+# Configurable cache duration in hours
+CACHE_DURATION_IN_HOURS = 2
+
+# Configurable timeout on connect to inm.es (set None for no timeout)
+TIMEOUT_IN_SECONDS = 5

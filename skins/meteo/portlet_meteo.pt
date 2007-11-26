@@ -24,11 +24,11 @@
       No information available.
     </div>
 
-    <div class="meteoError italic"
+    <div class="meteoError meteoItalic"
          tal:condition="isAdmin"
          tal:define="error weather/error"
          tal:content="string: ($error)">
-      (Error description)
+      (error description)
     </div>
 
     <div class="meteoError"
@@ -74,9 +74,9 @@
         <tr>
           <td tal:define="maxTemp dayData/maxTemperature;
                           minTemp dayData/minTemperature">
-            <span class="blue" tal:content="structure minTemp"></span>
+            <span class="meteoBlue" tal:content="structure minTemp"></span>
             &nbsp;&frasl;&nbsp;
-            <span class="red" tal:content="structure maxTemp"></span>
+            <span class="meteoRed" tal:content="structure maxTemp"></span>
           </td>
         </tr>
       </tal:loop>
@@ -93,16 +93,16 @@
           </td>
         </tr>
         <tr>
-          <td colspan="2" class="centerText"
+          <td colspan="2" class="meteoCenterText"
               tal:define="maxTemp dayData/maxTemperature;
                           minTemp dayData/minTemperature">
-            <span class="blue" tal:content="structure minTemp"></span>
+            <span class="meteoBlue" tal:content="structure minTemp"></span>
             &nbsp;&frasl;&nbsp;
-            <span class="red" tal:content="structure maxTemp"></span>
+            <span class="meteoRed" tal:content="structure maxTemp"></span>
           </td>
         </tr>
         <tr>
-          <td class="centerText">
+          <td class="meteoCenterText">
             <img src=""
                  alt=""
                  title=""
@@ -110,7 +110,7 @@
                                  alt dayData/iconAlternativeTextAM;
                                  title dayData/iconAlternativeTextAM" />
           </td>
-          <td class="centerText">
+          <td class="meteoCenterText">
             <img src=""
                  alt=""
                  title=""
@@ -120,11 +120,11 @@
           </td>
         </tr>
         <tr>
-          <td class="discreet centerText"
+          <td class="discreet meteoCenterText"
               i18n:translate="portlet_am">
             Morning
           </td>
-          <td class="discreet centerText"
+          <td class="discreet meteoCenterText"
               i18n:translate="portlet_pm">
             Afternoon
           </td>
@@ -134,7 +134,7 @@
     </tal:single>
 
   </dd>
-  <dd class="portletFooter discreet rightText"
+  <dd class="portletFooter discreet meteoRightText"
       tal:condition="not: weather/error|nothing"
       i18n:translate="portlet_source">
     Source: INM

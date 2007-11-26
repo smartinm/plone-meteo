@@ -1,5 +1,16 @@
 Changelog for Meteo
 
+Meteo 0.1.2 - 2007/11/26
+
+  - Added metadata files for icons.
+  - Added documentation for Plone 3.0 support.
+  - Switch from info to debug for log messages.
+
+Meteo 0.1.1 - 2007/11/05
+
+  - Added documentation for proxy support.
+  - Default timeout value to connect INM web server increased to 5s.
+
 Meteo 0.1.0 - 2007/09/24
 
-  - Initial public release
+  - Initial release.

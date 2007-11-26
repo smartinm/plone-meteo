@@ -1,40 +1,51 @@
 Meteo
 
-  Meteo is a product that let your Plone site shows the local weather forecast
+  Meteo is a product that lets your Plone site shows the local weather forecast
   for Spain provided by the National Institute of Meteorology
   ("www.inm.es":http://www.inm.es)
 
 
 Features
 
- * Meteo contains one portlet with a configurable look:
+ * Meteo includes one portlet with configurable look and feel:
 
    * Multiple days layout: shows the weather forecast (sky status, maximum and
      minimum temperature) for today and next days.
-     
+   
    * Single day layout: shows the weather forecast for today only (sky status
      on morning and afternoon, maximum and minimum temperature).
  
- * Meteo provide a detailed weather forecast page for the next seven days: sky
-   status, rainfall probability, maximum and minimum temperature, wind status
-   and maximum ultraviolet index.
+ * Meteo provides a detailed weather forecast page for the next seven days:
+   sky status, rainfall probability, maximum and minimum temperature, wind
+   status and maximum ultraviolet index.
 
- * Meteo use a cache system: the INM website will not be asked on every request
-   on your site. Every two hours, the INM website will be requested for fresh
-   information.
+ * Meteo uses a cache system: the INM website will not be asked on every
+   request to your site. Every two hours the INM website will be requested for
+   fresh information instead.
    
  * Meteo contains one configlet that will easily let you enters all the
    configuration information (location code and portlet's look). Moreover is
-   possible flush cache data.
+   possible flush cache data. 
  
- * Meteo is translated in english and spanish.
- 
+ * Meteo is translated into English and Spanish.
 
-Quickstart
+Dependencies
+
+ * Plone 2.5.x or 3.0.x
+
+Quick start
 
  * Install using the normal Plone way.
+
+ * If you are using Plone 2.5:
+   * Portlet that will be (by default) placed at the end of the right column.
+     
+ * If you are using Plone 3.0:
+   * Click Manage Portlets.
+   * From the *Add portlet...* menu, choose *Classic portlet*.
+   * For *Template*, enter "portlet_meteo"; for *Macro*, enter "portlet".
  
- * Go to the Meteo Configlet and set up your location and portlet's look.
+ * Go to the Meteo configlet and set up your location and portlet's look.
 
  * That's all
 
@@ -67,12 +78,13 @@ License
   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
   USA
 
-  Meteo is based on "Weather Forecast for Plone":http://plone.org/products/ploneweatherforecast
+
+Credits
+
+  Developed by Sergio Mart&iacute;n Morillas ("smartin@gmv.com":mailto:smartin@gmv.com)
+
+  Based on "Weather Forecast for Plone":http://plone.org/products/ploneweatherforecast
   original code source.
 
   The icons used by the product have been provided by National Institute of
   Meteorology website.
-  
-Credits
-
-  Developed by Sergio Martín Morillas ("smartin@gmv.com":mailto:smartin@gmv.com)
