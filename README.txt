@@ -26,7 +26,7 @@ Features
  * Meteo contains one configlet that will easily let you enters all the
    configuration information (location code and portlet's look). Moreover is
    possible flush cache data. 
- 
+   
  * Meteo is translated into English and Spanish.
 
 Dependencies
@@ -38,11 +38,15 @@ Quick start
  * Install using the normal Plone way.
 
  * If you are using Plone 2.5:
-   * Portlet that will be (by default) placed at the end of the right column.
+
+    * Portlet that will be (by default) placed at the end of the right column.
      
  * If you are using Plone 3.0:
+
    * Click Manage Portlets.
+
    * From the *Add portlet...* menu, choose *Classic portlet*.
+
    * For *Template*, enter "portlet_meteo"; for *Macro*, enter "portlet".
  
  * Go to the Meteo configlet and set up your location and portlet's look.
@@ -85,6 +89,8 @@ Credits
 
   Based on "Weather Forecast for Plone":http://plone.org/products/ploneweatherforecast
   original code source.
+  
+  Meteo uses Beautiful Soup to parser html documents.
 
   The icons used by the product have been provided by National Institute of
   Meteorology website.
