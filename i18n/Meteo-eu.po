@@ -1,0 +1,245 @@
+# Gettext Message File for Meteo
+# Sergio Martín <smartin@gmv.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2007-09-20 16:12+0000\n"
+"PO-Revision-Date: 2007-12-05 17:15+0100\n"
+"Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: eu\n"
+"Language-Name: Basque\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: meteo\n"
+
+#. Default: "Change settings"
+#: ..\skins\meteo\portlet_meteo.pt
+msgid "change_settings"
+msgstr "Ezarpenak aldatu"
+
+#. Default: "days"
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "days"
+msgstr "egunak"
+
+#. Default: "Settings that affect the portlet's look and product usage."
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "description_meteo_setup"
+msgstr "Portletaren eta produktuaren erabileraren inguruko konfigurazioa"
+
+#. Default: "Meteo configuration"
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "heading_meteo_setup"
+msgstr "Meteoren konfigurazioa"
+
+#. Default: "Put here the numeric code of five characters of the location you want to display on your pages."
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "help_location_code"
+msgstr "Zein tokitako eguraldia erakutsi zehazteko sartu tokiari dagokion bost digituko kodea"
+
+#. Default: "If you don't know this code, put here the name of the location you are looking for, and click on search."
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "help_location_search"
+msgstr "Kodea ez badakizu, tokiaren izena idatzi eta egin bilaketa"
+
+#. Default: "Your search returned too many results. Use more specific keywords."
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "help_location_search_many_result"
+msgstr "Emaitza gehiegi eman ditu zure bilaketak. Egin bilaketa zehatzagoa mesedez."
+
+#. Default: "Your search did not produce any result."
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "help_location_search_no_result"
+msgstr "Ez dago emaitzarik"
+
+#. Default: "Don't forget to save the result of your search if you are happy with it."
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "help_location_search_save"
+msgstr "Gorde bilaketaren emaitza nahi duzuna aurkitutakoan"
+
+#. Default: "Meteo includes a mini cache system, every two hours the www.inm.es web page will be requested for fresh information. It is flushed every time you change the location. You can force a flush of cache doing click on the button."
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "help_meteo_flush"
+msgstr "Meteok cache sistema bat dauka. Sistema honekin www.inm.es webgunea bi orduan behin bakarrik kontsultatuko da. Cachea, tokia aldatzen duzun bakoitzean automatikoki baliogabetuko da. Gainera, botoian klik eginez, eskuz baliogabetu dezakezu cache hau"
+
+#. Default: "Set the number of days that will be on the multiple days portlet."
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "help_portlet_days"
+msgstr "Ezarri egun anitzetako portletaren egun kopurua"
+
+#. Default: "National Institute of Meteorology of Spain"
+#: ..\skins\meteo\meteo_details.pt
+#: ..\skins\meteo\portlet_meteo.pt
+msgid "inm"
+msgstr "Espainiako Meteorologia Institutu Nazionala"
+
+#. Default: "Flush cache"
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "label_flush"
+msgstr "Cachea baliogabetu"
+
+#. Default: "Search for a location"
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "label_search"
+msgstr "Bilatu tokia"
+
+#. Default: "Put here the location code for inm.es"
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "label_location_code"
+msgstr "inm.es-ek toki bakoitzari esleitutako kodea"
+
+#. Default: "Number of days"
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "label_portlet_days"
+msgstr "Egun kopurua"
+
+#. Default: "Multiple days portlet"
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "label_portlet_multiple"
+msgstr "Egun anitzetako portleta"
+
+#. Default: "Single day portlet"
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "label_portlet_single"
+msgstr "Egun bateko portleta"
+
+#. Default: "Cache"
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "legend_meteo_cache"
+msgstr "Cachea"
+
+#. Default: "Identification of the location"
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "legend_meteo_code"
+msgstr "Tokiaren kodea"
+
+#. Default: "Portlet's look"
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "legend_meteo_portlet"
+msgstr "Portletaren itxura"
+
+#. Default: "(${altitud} above sea level)"
+#: ..\skins\meteo\meteo_details.pt
+msgid "meteo_deatils_altitude"
+msgstr "(Altuera: ${altitud})"
+
+#. Default: "(Central European Time, CET)"
+#: ..\skins\meteo\meteo_details.pt
+msgid "meteo_deatils_localtime"
+msgstr "(Europa Zentraleko Ordua, CET)"
+
+#. Default: "Go back page"
+#: ..\skins\meteo\meteo_details.pt
+msgid "meteo_details_back"
+msgstr "Atzera joan"
+
+#. Default: "Date"
+#: ..\skins\meteo\meteo_details.pt
+msgid "meteo_details_head_date"
+msgstr "Data"
+
+#. Default: "Rainfall probability (%)"
+#: ..\skins\meteo\meteo_details.pt
+msgid "meteo_details_head_rainprob"
+msgstr "Euria egiteko aukerak (%)"
+
+#. Default: "Sky status"
+#: ..\skins\meteo\meteo_details.pt
+msgid "meteo_details_head_state"
+msgstr "Zeruaren egoera"
+
+#. Default: "Max. Temperature (ºC)"
+#: ..\skins\meteo\meteo_details.pt
+msgid "meteo_details_head_tempmax"
+msgstr "Gehienezko tenperatura (ºC)"
+
+#. Default: "Min. Temperature (ºC)"
+#: ..\skins\meteo\meteo_details.pt
+msgid "meteo_details_head_tempmin"
+msgstr "Gutxienezko tenperatura (ºC)"
+
+#. Default: "Max. UV index"
+#: ..\skins\meteo\meteo_details.pt
+msgid "meteo_details_head_uvindex"
+msgstr "Izpi Ultra Moreen gehienezko indizea"
+
+#. Default: "Wind <br/> <br/> (km/h)"
+#: ..\skins\meteo\meteo_details.pt
+msgid "meteo_details_head_wind"
+msgstr "Haizea <br/> <br/> (km/h)\""
+
+#. Default: "Weather information for the next seven days"
+#: ..\skins\meteo\meteo_details.pt
+msgid "meteo_details_heading"
+msgstr "Datozen zazpi egunetarako eguraldiaren iragarpena"
+
+#. Default: "Forecast are provided by ${inm-link}"
+#: ..\skins\meteo\meteo_details.pt
+msgid "meteo_details_legal"
+msgstr "Iragarpenak ${inm-link}k emandakoak dira"
+
+#. Default: "Morning"
+#: ..\skins\meteo\portlet_meteo.pt
+msgid "portlet_am"
+msgstr "Goizean"
+
+#. Default: "More details"
+#: ..\skins\meteo\portlet_meteo.pt
+msgid "portlet_more_details"
+msgstr "Xehetasun gehiago"
+
+#. Default: "Please, check of location code."
+#: ..\skins\meteo\portlet_meteo.pt
+msgid "portlet_check_location"
+msgstr "Egiaztatu tokiaren kodea, mesedez"
+
+#. Default: "No information available."
+#: ..\skins\meteo\portlet_meteo.pt
+msgid "portlet_error"
+msgstr "Ez dago informaziorik."
+
+#. Default: "Weather"
+#: ..\skins\meteo\portlet_meteo.pt
+msgid "portlet_heading"
+msgstr "Eguraldia"
+
+#. Default: "Afternoon"
+#: ..\skins\meteo\portlet_meteo.pt
+msgid "portlet_pm"
+msgstr "Arratsaldean"
+
+#. Default: "Source: INM ${inm-link}"
+#: ..\skins\meteo\portlet_meteo.pt
+msgid "portlet_source"
+msgstr "Iturria: INM ${inm-link}"
+
+#. Default: "Invalid code"
+#: ..\skins\meteo\prefs_meteo_form.cpt
+msgid "code_error"
+msgstr "Kode honek ez du balio"
+
+msgid "Monday"
+msgstr "Astelehena"
+
+msgid "Tuesday"
+msgstr "Asteartea"
+
+msgid "Wednesday"
+msgstr "Asteazkena"
+
+msgid "Thursday"
+msgstr "Osteguna"
+
+msgid "Friday"
+msgstr "Ostirala"
+
+msgid "Saturday"
+msgstr "Larunbata"
+
+msgid "Sunday"
+msgstr "Igandea"
+

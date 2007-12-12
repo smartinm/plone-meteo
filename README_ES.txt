@@ -28,7 +28,7 @@ Características
    posible configurar la apariencia del portlet y la localidad que se desea
    mostrar. También es posible forzar la limpieza del caché.
  
- * Meteo está traducido al castellano e inglés.
+ * Meteo está traducido al castellano, euskera e inglés.
 
 Módulos
 

@@ -27,7 +27,7 @@ Features
    configuration information (location code and portlet's look). Moreover is
    possible flush cache data. 
    
- * Meteo is translated into English and Spanish.
+ * Meteo is translated into English, Basque and Spanish.
 
 Dependencies
 

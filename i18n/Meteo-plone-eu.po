@@ -1,0 +1,29 @@
+# Gettext Message File for Meteo
+# Sergio Martín <smartin@gmv.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2007-09-20 16:12+0000\n"
+"PO-Revision-Date: 2007-12-03 10:06+0100\n"
+"Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: eu\n"
+"Language-Name: Basque\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+
+#: ..\skins\meteo\prefs_meteo_flush.py:13
+msgid "Cache flushed."
+msgstr "Cachea baliogabetuta"
+
+#: ..\skins\meteo\prefs_meteo_set.cpy
+msgid "Meteo Configuration has been successfully updated."
+msgstr "Meteoren konfigurazioa ondo aldatu da"
+
+msgid "Meteo Configuration"
+msgstr "Meteoren konfigurazioa"
+

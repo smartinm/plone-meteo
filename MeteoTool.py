@@ -167,7 +167,7 @@ class MeteoTool(UniqueObject, SimpleItem):
     def renewCache(self, timeout=None):
         """
         """
-        LOGGER.debug("renewCache: manual update cache (timeout: %d)", timeout)
+        LOGGER.info("renewCache: manual update cache (timeout: %s)", timeout)
         
         result = "renewCache success"
         try:
@@ -287,8 +287,8 @@ class MeteoTool(UniqueObject, SimpleItem):
         
         if cacheTime + self.cacheDuration < now:
             # Caché ha expirado
-            LOGGER.debug("getWeatherData: cache has expired (cache date: %s)",
-                         time.ctime(cacheTime))
+            LOGGER.info("getWeatherData: cache has expired (cache date: %s)",
+                        time.ctime(cacheTime))
             
             try:
                 data = Meteo.local_weather(self.locationCode,
@@ -299,7 +299,7 @@ class MeteoTool(UniqueObject, SimpleItem):
             
             except IOError, e:
                 # Si hay un error conectando al servidor se utiliza la cache
-                LOGGER.debug("getWeatherData: IOError (%s)", e)
+                LOGGER.warning("getWeatherData: IOError (%s)", e)
                 data = self.cache["data"]
                 self.cache["date"] = now
                 self.cache = self.cache

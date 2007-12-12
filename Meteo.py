@@ -35,7 +35,7 @@ Dependencias:
 """
 
 __author__ = "Sergio Martín Morillas (smartin@gmv.com)"
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 __copyright__ = "Copyright (C) 2007 GMV SGI Team <http://www.gmv-sgi.es>"
 __license__ = "GPLv2"
 
@@ -92,7 +92,13 @@ def img_alt(img_tag):
 def format_location(location):
     res = re.search("(.*) - (.*)", location)
     if res:
-        return res.groups()
+        location = res.groups()
+        res = re.search("(.*), (.*)", location[0])
+        if res:
+            groups = res.groups()
+            return ("%s %s" % (groups[1], groups[0]), location[1])
+        else:
+            return location
     else:
         return location
 

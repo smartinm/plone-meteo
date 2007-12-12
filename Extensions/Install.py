@@ -40,7 +40,7 @@ configlets = (
         'visible'    : 1,
         'appId'      : PROJECTNAME,
         'permission' : ManagePortal,
-        'imageUrl'   : 'prefs_meteo_icon.png',
+        'imageUrl'   : 'prefs_meteo_icon.gif',
     },
 )
 
@@ -53,12 +53,12 @@ def installPortlet(self, outStream):
             outStream.write("Meteo portlet already installed, nothing to do.\n")
         else:
             right_slots_list = list(self.right_slots)
-            self._delProperty('right_slots')
             right_slots_list.append(portletPath)
+            self._delProperty('right_slots')
             self._setProperty('right_slots', tuple(right_slots_list), 'lines')
             outStream.write("Meteo was installed on the right. To change this, edit the left and right_slots properties in the ZMI.\n")
     else:
-        outStream.write("No attribute right_slots was found in context, nothing done. You have to add manually '%s' in the left and right_slots properties in the ZMI.\n" % portletPath)
+        outStream.write("Warning: No attribute right_slots was found in context, nothing done. You have to add manually '%s' in the left and right_slots properties in the ZMI.\n" % portletPath)
 
 
 def uninstallPortlet(self, outStream):
@@ -67,18 +67,15 @@ def uninstallPortlet(self, outStream):
             attrib = getattr(self, attributeName)
             if portletPath in attrib:
                 slotsList = list(attrib)
-                self._delProperty(attributeName)
                 slotsList.remove(portletPath)
+                self._delProperty(attributeName)
                 self._setProperty(attributeName, tuple(slotsList), 'lines')
                 outStream.write("Meteo was removed from %s.\n" % attributeName)
-            else:
-                pass
-#                 outStream.write("debug : portlet not found in %s.\n" % (attributeName))
         except AttributeError:
-            outStream.write("Warning : No attribute %s was found in context.\n" % attributeName)
+            outStream.write("Warning: No attribute %s was found in context.\n" % attributeName)
 
 def installSubSkin(context, skinFolder, outStream):
-    """ Install a subskin in portal_skins
+    """ Install SubSkin in portal_skins
     """
     skinsTool = getToolByName(context, 'portal_skins')
     for skin in skinsTool.getSkinSelections():
@@ -86,14 +83,14 @@ def installSubSkin(context, skinFolder, outStream):
         path = map(string.strip, string.split(path,',' ))
         if not skinFolder in path:
             try:
-                path.insert( path.index( 'custom')+1, skinFolder )
+                path.insert(path.index('custom')+1, skinFolder)
             except ValueError:
                 path.append(skinFolder)
-            path = string.join( path, ', ' )
+            path = string.join(path, ', ')
             skinsTool.addSkinSelection( skin, path )
-            outStream.write('Subskin successfully installed into %s.\n' % skin)
+            outStream.write('Skins successfully installed into %s.\n' % skin)
         else:
-            outStream.write('Subskin was already installed into %s.\n' % skin)
+            outStream.write('Skins was already installed into %s.\n' % skin)
 
 def addWeatherTool(self, out):
     # Check that the tool has not been added using its id
