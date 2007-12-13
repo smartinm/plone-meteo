@@ -2,8 +2,7 @@ Changelog for Meteo
 
 Meteo 0.1.3 - 2007/12/13
 
-  - Added Basque translations.
-      Thanks to Mikel Larreategi <mlarreategi@codesyntax.com>
+  - Added Basque translations. Thanks to Mikel Larreategi.
   - Replaced PNG configlet icon with GIF (IE doesn't display transparent PNG).
   - Enhanced parsing of complex names of localities.
   - Fixed minor bugs.
