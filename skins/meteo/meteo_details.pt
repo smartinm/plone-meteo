@@ -7,10 +7,14 @@
       i18n:domain="meteo">
 
 <head>
-<metal:column fill-slot="column_two_slot"></metal:column>
+  <metal:block fill-slot="head_slot">
+    <tal:override-slot define="global hidecolumns string:visualColumnHideTwo" />
+  </metal:block>
 
-<metal:block metal:fill-slot="top_slot"
-             tal:define="dummy python:request.set('disable_border',1)" />
+  <metal:column fill-slot="column_two_slot"></metal:column>
+
+  <metal:block metal:fill-slot="top_slot"
+               tal:define="dummy python:request.set('disable_border',1)" />
 </head>
 
 <body>
