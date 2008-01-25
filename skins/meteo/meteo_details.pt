@@ -263,17 +263,17 @@
     Forecast are provided by
     <span i18n:name="inm-link">
     <a href="http://www.inm.es"
-       alt="http://www.inm.es"
        title="http://www.inm.es"
        i18n:translate="inm">National Institute of Meteorology of Spain</a>.
      </span>
   </div>
   
-  <br />
   <div class="discreet">
     <a href="javascript:history.back()"
         i18n:translate="meteo_details_back">Go back page</a>
   </div>
+  
+  <br />
   
 </metal:main>
 
