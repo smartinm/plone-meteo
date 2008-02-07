@@ -267,14 +267,7 @@
        i18n:translate="inm">National Institute of Meteorology of Spain</a>.
      </span>
   </div>
-  
-  <div class="discreet">
-    <a href="javascript:history.back()"
-        i18n:translate="meteo_details_back">Go back page</a>
-  </div>
-  
-  <br />
-  
+
 </metal:main>
 
 </body>
