@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2007-09-20 16:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Lucía R. Manzano Gómez <lreyes@gmv.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -242,3 +242,27 @@ msgstr ""
 
 msgid "Sunday"
 msgstr ""
+
+#. Default: "Weather"
+# \skins\svenderstheme_frontpage\svenders_box_meteo.pt
+msgid "weather"
+msgstr ""
+
+#. Default: "Day of Week"
+# \skins\svenderstheme_frontpage\svenders_box_meteo.pt
+msgid "day_week"
+msgstr ""
+
+#. Default: "Seven-day weather forecast"
+# \skins\svenderstheme_frontpage\svenders_box_meteo.pt
+msgid "7_day_weather_forecast"
+msgstr ""
+
+#. Default: "View current week"
+# \skins\svenderstheme_frontpage\svenders_box_meteo.pt
+msgid "view_current_week"
+msgstr ""
+
+msgid "whole_week"
+msgstr ""
+
