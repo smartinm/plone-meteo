@@ -243,18 +243,3 @@ msgstr "Sábado"
 msgid "Sunday"
 msgstr "Domingo"
 
-#. Default: "Seven-day weather forecast"
-# \skins\svenderstheme_frontpage\svenders_box_meteo.pt
-msgid "7_day_weather_forecast"
-msgstr "Previsión meteorológica para los próximos 7 días"
-
-#. Default: "View current week"
-# \skins\svenderstheme_frontpage\svenders_box_meteo.pt
-msgid "view_current_week"
-msgstr "Ver semana"
-
-msgid "whole_week"
-msgstr "Semana completa"
-
-msgid "tide table"
-msgstr "Tabla de mareas"

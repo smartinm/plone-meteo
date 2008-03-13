@@ -243,18 +243,4 @@ msgstr ""
 msgid "Sunday"
 msgstr ""
 
-#. Default: "Seven-day weather forecast"
-# \skins\svenderstheme_frontpage\svenders_box_meteo.pt
-msgid "7_day_weather_forecast"
-msgstr ""
 
-#. Default: "View current week"
-# \skins\svenderstheme_frontpage\svenders_box_meteo.pt
-msgid "view_current_week"
-msgstr ""
-
-msgid "whole_week"
-msgstr ""
-
-msgid "tide table"
-msgstr ""
