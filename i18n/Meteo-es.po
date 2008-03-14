@@ -74,8 +74,8 @@ msgstr "Especifica el número de días que se mostrarán en el portlet de varios
 #. Default: "National Institute of Meteorology of Spain"
 #: ..\skins\meteo\meteo_details.pt
 #: ..\skins\meteo\portlet_meteo.pt
-msgid "inm"
-msgstr "Instituto Nacional de Meteorología"
+msgid "aemet"
+msgstr "Agencia Estatal de Meteorología (www.aemet.es)"
 
 #. Default: "Flush cache"
 #: ..\skins\meteo\prefs_meteo_form.cpt
@@ -177,10 +177,10 @@ msgstr "Viento <br/> <br/> (km/h)"
 msgid "meteo_details_heading"
 msgstr "Información meteorológica para los próximos 7 días"
 
-#. Default: "Forecast are provided by ${inm-link}"
+#. Default: "Forecast are provided by ${aemet-link}"
 #: ..\skins\meteo\meteo_details.pt
 msgid "meteo_details_legal"
-msgstr "Predicción meteorológica proporcionada por el ${inm-link}"
+msgstr "Predicción meteorológica proporcionada por ${aemet-link}"
 
 #. Default: "Morning"
 #: ..\skins\meteo\portlet_meteo.pt
@@ -212,10 +212,10 @@ msgstr "El tiempo"
 msgid "portlet_pm"
 msgstr "Tarde"
 
-#. Default: "Source: INM ${inm-link}"
+#. Default: "Source: INM ${aemet-link}"
 #: ..\skins\meteo\portlet_meteo.pt
 msgid "portlet_source"
-msgstr "Fuente: INM ${inm-link}"
+msgstr "Fuente: ${aemet-link}"
 
 #. Default: "Invalid code"
 #: ..\skins\meteo\prefs_meteo_form.cpt
@@ -242,4 +242,3 @@ msgstr "Sábado"
 
 msgid "Sunday"
 msgstr "Domingo"
-

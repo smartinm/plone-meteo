@@ -1,0 +1,7 @@
+TODO for Meteo
+
+ - Persistencia de configuración al reinstalar el producto
+
+ - Nuevas traducciones de la web AEMET con configuración en el panel de control      
+
+ - Reducidir el uso de memoria liberando el diccionario de localizaciones

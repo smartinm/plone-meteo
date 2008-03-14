@@ -1,0 +1,269 @@
+/*
+  Hoja de estilos de la Agencia Estatal de Meteorología (www.aemet.es)
+  para la tabla de predicciones por localidades
+  (http://www.aemet.es/css/estilos.css)
+  
+  <dtml-with base_properties>
+  <dtml-call "REQUEST.set('portal_url', portal_url())">
+*/
+
+table{
+	empty-cells: show;
+	}
+	
+/* */
+.notas_tabla{
+	font-size: 0.9em;
+	color: #4F86D8;
+	padding-top: 0px;
+	padding-bottom: 10px;
+	padding-left: 0px;
+	text-align: left;
+	}
+	
+/* */
+.tabla_datos{
+	color: #000000;
+	font-weight: normal;
+	text-decoration: none;
+	text-align: left;
+	border: 0px;
+	width: 570px;
+	padding: 0px;
+	vertical-align: top;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	empty-cells: show;
+	}
+.tabla_datos tfoot{
+	color: #4F86D8;
+	}
+.tabla_datos td{
+	padding-left:5px;
+	padding-top: 2px;
+	padding-right: 5px;
+	padding-bottom: 2px;
+	}
+.tabla_datos_sinpadd{
+	color: #000000;
+	font-weight: normal;
+	border: 0px;
+	width: 100%;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-bottom: 0px;
+	}
+.tabla_datos_sinpadd td{
+	padding: 0px;
+	vertical-align: top;
+	}
+.cabecera_niv1 th{
+	background-color: #4F86D9;
+	color: #FFFFFF;
+	text-align: center;
+	font-weight: normal;
+	vertical-align: top;
+	}
+.cabecera_niv1_mid th{
+	background-color: #4F86D9;
+	color: #FFFFFF;
+	text-align: center;
+	font-weight: normal;
+	 vertical-align: middle;
+	}
+.cabecera_niv1_bottom th{
+	background-color: #4F86D9;
+	color: #FFFFFF;
+	text-align: center;
+	font-weight: normal;
+ 	vertical-align: bottom;
+	}
+.cabecera_celda{
+	font-weight: bold;
+	text-align: left;
+	vertical-align: bottom;
+	}
+.cabecera_celda_center{
+	font-weight: bold;
+	 text-align: center;
+	}
+.cabecera_niv2 th{
+	background-color: #95B6E9;
+	font-weight: normal;
+	color: #FFFFFF;
+	text-align: center;
+	vertical-align: middle;
+	}
+.cabecera_niv2_in{
+	background-color: #95B6E9;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: center;
+	vertical-align: middle;
+	}
+.cabecera_niv3 th{
+	color: #4F86D8;
+	border: 1px solid #4F86D8;
+	font-weight: normal;
+	text-align: center;
+	padding: 1px;
+	}
+
+/* */
+.borde_rlb_th{
+	border-right: solid 1px #95B6E8;
+	border-left: solid 1px #95B6E8;
+	border-bottom: solid 1px #95B6E8;
+	vertical-align: top;
+	font-weight: normal;
+	text-align: left;
+	padding-left: 5px;
+	}
+.borde_rlb_th2{
+	border-right: solid 1px #95B6E8;
+	border-left: solid 1px #95B6E8;
+	border-bottom: solid 1px #95B6E8;
+	vertical-align: top;
+	font-weight: bold;
+	text-align: left;
+	padding-left: 5px;
+	}
+.borde_rb_th{
+	border-right: solid 1px #95B6E8;
+	border-bottom: solid 1px #95B6E8;
+	vertical-align: top;
+	font-weight: normal;
+	text-align: left;
+	padding-left: 5px;
+	}
+.borde_b{
+	border-bottom: solid 1px #95B6E8;
+	text-align: center;
+	}
+.borde_r{
+	border-right:solid 1px #95B6E8;
+	}
+.borde_l{
+	border-left: solid 1px #95B6E8;
+	}
+.borde_rb{
+	border-right: solid 1px #95B6E8;
+	border-bottom: solid 1px #95B6E8;
+	text-align: center;
+	}
+.borde_rlb{
+	border-right:solid 1px #95B6E8;
+	border-left: solid 1px #95B6E8;
+	border-bottom: solid 1px #95B6E8;
+	text-align: left;
+	}
+.borde_rb_left{
+	border-right:solid 1px #95B6E8;
+	border-bottom: solid 1px #95B6E8;
+	text-align: left;
+	}
+.borde_rb_right{
+	border-right:solid 1px #95B6E8;
+	border-bottom: solid 1px #95B6E8;
+	text-align: right;
+	}
+	
+/* */
+.raduv_pred_nivel1{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c1_pred.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;
+	}
+.raduv_pred_nivel2{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c2_pred.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;
+	}
+.raduv_pred_nivel3{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c3_pred.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;
+	}
+.raduv_pred_nivel4{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c4_pred.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;
+	}
+.raduv_pred_nivel5{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c5_pred.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;
+	}	
+.raduv_nivel1{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c1.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;
+	}
+.raduv_nivel2{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c2.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;
+	}
+.raduv_nivel3{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c3.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;	
+	}
+.raduv_nivel4{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c4.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;	
+	}
+.raduv_nivel5{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c5.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;	
+	}
+.raduv_nivel6{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c6.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;	
+	}
+.raduv_nivel7{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c7.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;	
+	}
+.raduv_nivel8{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c8.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;	
+	}
+.raduv_nivel9{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c9.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;	
+	}
+.raduv_nivel10{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c10.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;	
+	}
+.raduv_nivel11{
+	background-image: url(&dtml-portal_url;/meteo_icons/uvi_c11.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 24px;	
+	}
+
+/* </dtml-with> */

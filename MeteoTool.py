@@ -35,8 +35,8 @@ from Products.CMFCore.utils import UniqueObject
 from Products.Meteo.config import *
 
 import Meteo
-import LocationsTable
 
+import LocationsTable
 
 class MeteoTool(UniqueObject, SimpleItem):
     """
@@ -61,6 +61,8 @@ class MeteoTool(UniqueObject, SimpleItem):
         self.numDaysInPortlet = 3
         
         self.portletType = PORTLET_MULTIPLE
+        
+        self.languageCode = "es"
 
         self.cache = {
             "date" : 0,
@@ -69,40 +71,34 @@ class MeteoTool(UniqueObject, SimpleItem):
 
     security.declarePublic("getLocationCode")
     def getLocationCode(self):
-        """
-        """
+        """ """
         return self.locationCode
 
     security.declarePublic("getNumDaysInPortlet")
     def getNumDaysInPortlet(self):
-        """
-        """
+        """ """
         return self.numDaysInPortlet
     
     security.declarePublic("getLocationUrl")
     def getLocationUrl(self):
-        """
-        """
-        return Meteo.SERVER_URL % self.locationCode
+        """ """
+        return Meteo.SERVER_URL % (self.languageCode +'/-m', self.locationCode)
 
     security.declarePublic("getPortletType")
     def getPortletType(self):
-        """
-        """
+        """ """
         return self.portletType
 
     security.declarePublic("getNumDaysInPortlet")
     def getMaxIndexForPortlet(self):
-        """
-        """
+        """ """
         data = self.getWeatherData()
-        return min(self.numDaysInPortlet,
-                   len(data["forecast"]))
+        return min(self.numDaysInPortlet, len(data["forecast"]))
 
     security.declareProtected(permissions.ManagePortal, "searchLocation")
     def searchLocation(self, search):
-        """
-        """
+        """ """
+        # XXX: ugly
         results = []
         search = search.lower()
         search = search.replace('Á','a')
@@ -125,8 +121,7 @@ class MeteoTool(UniqueObject, SimpleItem):
 
     security.declareProtected(permissions.ManagePortal, "searchLocationByCode")
     def searchLocationByCode(self, code):
-        """
-        """
+        """ """
         for location in LocationsTable.locations:
             if location[0] == code:
                 return location[1]
@@ -135,8 +130,7 @@ class MeteoTool(UniqueObject, SimpleItem):
 
     security.declareProtected(permissions.ManagePortal, "manageFormResults")
     def manageFormResults(self, **params) :
-        """
-        """
+        """ """
         purgeCache = False
 
         if self.locationCode != params["locationCode"]:
@@ -156,57 +150,56 @@ class MeteoTool(UniqueObject, SimpleItem):
     
     security.declareProtected(permissions.ManagePortal, "flushCache")
     def flushCache(self):
-        """
-        """
+        """ """
         self.cache["date"] = 0
         self.cache = self.cache
         
         return "flushCache success"
 
     security.declareProtected(permissions.ManagePortal, "renewCache")
-    def renewCache(self, timeout=None):
-        """
-        """
+    def renewCache(self, timeout=0):
+        """ """
         LOGGER.info("renewCache: manual update cache (timeout: %s)", timeout)
         
         result = "renewCache success"
         try:
-            data = Meteo.local_weather(self.locationCode, timeout)
+            data = Meteo.local_weather(self.locationCode,
+                                       language=self.languageCode,
+                                       timeout=timeout)
             self.cache["data"] = data
             self.cache["date"] = time.time()
             self.cache = self.cache
         except:
+            raise
             result = "renewCache failed"
         
         return result
 
     security.declarePublic("getDayOfWeek")
     def getDayOfWeek(self, date):
-        """
-        """
+        """ """
         dayOfWeek = ""
         
-        if date.startswith(u'Lun'):
+        if date.startswith(u'lun'):
             dayOfWeek = u"Monday"
-        elif date.startswith(u'Mar'):
+        elif date.startswith(u'mar'):
             dayOfWeek = u"Tuesday"
-        elif date.startswith(u'Mié'):
+        elif date.startswith(u'mié'):
             dayOfWeek = u"Wednesday"
-        elif date.startswith(u'Jue'):
+        elif date.startswith(u'jue'):
             dayOfWeek = u"Thursday"
-        elif date.startswith(u'Vie'):
+        elif date.startswith(u'vie'):
             dayOfWeek = u"Friday"
-        elif date.startswith(u'Sáb'):
+        elif date.startswith(u'sáb'):
             dayOfWeek = u"Saturday"
-        elif date.startswith(u'Dom'):
+        elif date.startswith(u'dom'):
             dayOfWeek = u"Sunday"
 
         return dayOfWeek
 
     security.declarePublic("getSimpleWeatherData")
     def getSimpleWeatherData(self):
-        """
-            Return a dictionnary with the following keys :
+        """Return a dictionnary with the following keys:
             location : the location returned by the server, or an error message.
             forecast : a list of forecast which contains for each element
                 iconUrl : the url of the icon to display
@@ -278,9 +271,8 @@ class MeteoTool(UniqueObject, SimpleItem):
 
     security.declarePublic("getWeatherData")
     def getWeatherData(self):
-        """
-            Return the complete dictionnary returned by Meteo.py.
-            More details can be found in the docstrings of local_weather()
+        """Return the complete dictionnary returned by Meteo.py.
+           More details can be found in the docstrings of local_weather()
         """
         now = time.time()
         cacheTime = self.cache["date"]
@@ -292,7 +284,8 @@ class MeteoTool(UniqueObject, SimpleItem):
             
             try:
                 data = Meteo.local_weather(self.locationCode,
-                                           TIMEOUT_IN_SECONDS)
+                                           language=self.languageCode,
+                                           timeout=TIMEOUT_IN_SECONDS)
                 self.cache["data"] = data
                 self.cache["date"] = now
                 self.cache = self.cache
@@ -313,8 +306,7 @@ class MeteoTool(UniqueObject, SimpleItem):
 
     security.declarePublic("adminLink")
     def adminLink(self):
-        """
-            True if admin link have to be displayed
+        """True if admin link have to be displayed
         """
         return getSecurityManager().checkPermission('Manager', self)
 

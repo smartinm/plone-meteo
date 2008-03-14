@@ -1,15 +1,4 @@
 
-#inmWrapper {
-	margin-top: 1em;
-    width: 668px;
-}
-
-#inmWrapperIframe {
-	margin-top: 1em;
-	width: 703px;
-	border: 1px solid
-}
-
 #portlet-meteo dd {
 	padding: 4px;
 }
@@ -23,7 +12,8 @@
 }
 
 .meteoForecast img {
-	border: 3px double #B5D3E2;
+	border: 1px solid #ccc;
+	/*border: 3px double #B5D3E2;*/
 }
 
 .meteoLegal {
@@ -60,73 +50,8 @@
 	text-align: center;
 }
 
-/* INM CSS */
-
-TD.titfilgen {
-   border-style: solid;
-   border-width: 1px 1px 1px 1px;
-   border-color: #7799DD;
-   background-color: #7799DD;
-}
-
-
-TD.titfil {
-   background-color: #7799DD;
-   text-align: left;
-   color: #FFFFFF;
-   font-size: 11px;
-   font-weight: bold;
-   font-family:  Helvetica, Arial, Sans-serif;
-}
-
-TD.titfil_13 {
-   background-color: #7799DD;
-   text-align: left;
-   color: #FFFFFF;
-   font-size: 13px;
-   font-weight: bold;
-   font-family:  Helvetica, Arial, Sans-serif;
-}
-
-TD.titfil_11 {
-   background-color: #7799DD;
-   text-align: left;
-   color: #FFFFFF;
-   font-size: 11px;
-   font-weight: bold;
-   font-family:  Helvetica, Arial, Sans-serif;
-}
-
-TD.titfil2 {
-   background-color: #EEEEEE;
-   text-align: left;
-   color: #7799DD;
-   font-size: 11px;
-   font-weight: normal;
-   font-family:  Helvetica, Arial, Sans-serif;
-}
-
-TD.titfilcenter {
-   background-color: #EEEEEE;
-   text-align: center;
-   color: #7799DD;
-   font-size: 11px;
-   font-weight: normal;
-   font-family:  Helvetica, Arial, Sans-serif;
-}
-
-TD.titfilright_11 {
-   text-align: right;
-   background-color: #7799DD;
-   color: #FFFFFF;
-   font-size: 11px;
-   font-family:  Helvetica, Arial, Sans-serif;
-}
-
-TD.titfilright_9 {
-   text-align: right;
-   background-color: #7799DD;
-   color: #FFFFFF;
-   font-size: 9px;
-   font-family:  Helvetica, Arial, Sans-serif;
+#inmWrapperIframe {
+	margin-top: 1em;
+	width: 703px;
+	border: 1px solid
 }

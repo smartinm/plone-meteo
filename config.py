@@ -21,6 +21,8 @@
 #
 import logging 
 
+from Products.Archetypes.utils import DisplayList
+
 # The product name is specified. 
 PROJECTNAME = "Meteo"
 
@@ -33,6 +35,17 @@ SKINS_DIR = 'skins'
 # A global name space when this product is loaded into Python is 
 # preserved. It passes to the package_home() etc.
 GLOBALS = globals()
+
+# XXX: no support yet
+AEMET_LANGUAGES = DisplayList((
+    ('es', 'Español',    'label_lang_es'),
+    ('ca', 'Catalán',    'label_lang_ca'),
+    ('gl', 'Gallego',    'label_lang_gl'),
+    ('va', 'Valenciano', 'label_lang_va'),
+    ('eu', 'Euskera',    'label_lang_eu'),
+    ('en', 'Inglés',     'label_lang_en'),
+    ('fr', 'Francés',    'label_lang_fr'),
+))
 
 # Porlets internal names, please don't touch.
 PORTLET_SINGLE   = 'single'

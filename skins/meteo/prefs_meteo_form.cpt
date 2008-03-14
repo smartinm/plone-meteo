@@ -239,6 +239,36 @@
                 
                 <span i18n:translate="days">days</span>
             </div>
+
+            <tal:comment replace="nothing">
+            <br />
+            <div class="field"
+                 tal:define="language_code request/language_code | tool/getLanguage | nothing;
+                             error errors/language_code | nothing;"
+                 tal:attributes="class python:test(error, 'field error', 'field')">
+    
+                <label for="language"
+                       i18n:translate="">Idioma</label>
+
+                <div class="formHelp" i18n:translate="">
+                  Selecciona un idioma
+                </div>
+
+                <div tal:content="error">Validation error output</div>
+
+                <select name="language_code" id="language_code" tabindex=""
+                        tal:define="vocab tool/getAvailableLanguages"
+                        tal:attributes="tabindex tabindex/next;">
+
+                    <option tal:repeat="item vocab"
+                            tal:attributes="value item;
+                                            selected python:here.checkSelected(item, language_code) and 'selected' or None"
+                            tal:content="python:here.translate(vocab.getMsgId(item), default=vocab.getValue(item))"
+                            i18n:translate=""
+                            />
+                </select>
+            </div>
+            </tal:comment>
  
         </fieldset>
 

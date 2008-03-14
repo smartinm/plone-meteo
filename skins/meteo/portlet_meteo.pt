@@ -66,7 +66,7 @@
             <img src=""
                  alt=""
                  title=""
-                 height="40" width="40"
+                 height="35" width="35"
                  tal:attributes="src dayData/iconUrl;
                                  alt dayData/iconAlternativeText;
                                  title dayData/iconAlternativeText" />
@@ -75,9 +75,7 @@
         <tr>
           <td tal:define="maxTemp dayData/maxTemperature;
                           minTemp dayData/minTemperature">
-            <span class="meteoBlue" tal:content="structure minTemp"></span>
-            &nbsp;&frasl;&nbsp;
-            <span class="meteoRed" tal:content="structure maxTemp"></span>
+            <span class="meteoBlue" tal:content="structure minTemp"></span>&nbsp;&frasl;&nbsp;<span class="meteoRed" tal:content="structure maxTemp"></span>
           </td>
         </tr>
       </tal:loop>
@@ -97,9 +95,7 @@
           <td colspan="2" class="meteoCenterText"
               tal:define="maxTemp dayData/maxTemperature;
                           minTemp dayData/minTemperature">
-            <span class="meteoBlue" tal:content="structure minTemp"></span>
-            &nbsp;&frasl;&nbsp;
-            <span class="meteoRed" tal:content="structure maxTemp"></span>
+            <span class="meteoBlue" tal:content="structure minTemp"></span>&nbsp;&frasl;&nbsp;<span class="meteoRed" tal:content="structure maxTemp"></span>
           </td>
         </tr>
         <tr>
@@ -107,7 +103,7 @@
             <img src=""
                  alt=""
                  title=""
-                 height="40" width="40"
+                 height="35" width="35"
                  tal:attributes="src dayData/iconUrlAM;
                                  alt dayData/iconAlternativeTextAM;
                                  title dayData/iconAlternativeTextAM" />
@@ -116,7 +112,7 @@
             <img src=""
                  alt=""
                  title=""
-                 height="40" width="40"
+                 height="35" width="35"
                  tal:attributes="src dayData/iconUrlPM;
                                  alt dayData/iconAlternativeTextPM;
                                  title dayData/iconAlternativeTextPM" />
@@ -140,13 +136,12 @@
   <dd class="portletFooter discreet meteoRightText"
       tal:condition="not: weather/error|nothing"
       i18n:translate="portlet_source">
-    Source: INM
-    <span i18n:name="inm-link">
-    (<a href="http://www.inm.es"
-        alt="National Institute of Meteorology of Spain"
-        title="National Institute of Meteorology of Spain"
-        i18n:attributes="alt inm;
-                         title inm;">www.inm.es</a>)
+    Source:
+    <span i18n:name="aemet-link">
+      <a style="border-bottom: 1px dotted;"
+         href="http://www.aemet.es"
+         title="Spain Meteorological Agency - Agencia Estatal de Meteorología (www.aemet.es)"
+         i18n:attributes="title aemet">AEMET</a>
     </span>
   </dd>
   <dd class="portletFooter"
