@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Meteo
-# Copyright (C) 2007 GMV SGI Team <http://www.gmv-sgi.es>
+# Copyright (C) 2008 GMV SGI Team <http://www.gmv-sgi.es>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of version 2 of the GNU General Public
@@ -306,28 +306,13 @@ def decode_location(title):
     else:
         return location
 
-# XXX
-
-def fomat_date(date):
-    res = re.search(".*: (.*)", date)
-    if res:
-        return res.group(1)
-    else:
-        return date
-
-def fomat_altitude(altitude):
-    res = re.search(".* \((.*)\)", altitude)
-    if res:
-        return res.group(1)
-    else:
-        return altitude
 
 ########################################################
 # 
 ########################################################
 
 def connect_to_server(location_code, language, timeout):
-    """Devuelve un stream que es necesario cerrarlo
+    """Devuelve un stream que es necesario cerrarlo después de usarlo
     """
     url = SERVER_URL % (language, location_code)
 
@@ -361,9 +346,11 @@ def local_weather(location_code, language='es', path_src='meteo_icons/', timeout
     """
     # Connecto to server
     data_stream = connect_to_server(location_code, language, timeout)
+
     # Process HTML with BeautifulSoup
     soup = BeautifulSoup(data_stream,
                          convertEntities=BeautifulSoup.HTML_ENTITIES)
+
     # Close data stream
     data_stream.close()
 
@@ -406,7 +393,6 @@ def local_weather(location_code, language='es', path_src='meteo_icons/', timeout
         forecast = decode_forecast(dates, data)
     
     except:
-        raise
         error_message = "Failed parsing HTML."
         raise RuntimeError, error_message
  

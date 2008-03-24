@@ -132,11 +132,6 @@ msgstr "(Altuera: ${altitud})"
 msgid "meteo_deatils_localtime"
 msgstr "(Europa Zentraleko Ordua, CET)"
 
-#. Default: "Go back page"
-#: ..\skins\meteo\meteo_details.pt
-msgid "meteo_details_back"
-msgstr "Atzera joan"
-
 #. Default: "Date"
 #: ..\skins\meteo\meteo_details.pt
 msgid "meteo_details_head_date"
@@ -177,10 +172,10 @@ msgstr "Haizea <br/> <br/> (km/h)\""
 msgid "meteo_details_heading"
 msgstr "Datozen zazpi egunetarako eguraldiaren iragarpena"
 
-#. Default: "Forecast are provided by ${inm-link}"
+#. Default: "Forecast are provided by ${aemet-link}"
 #: ..\skins\meteo\meteo_details.pt
 msgid "meteo_details_legal"
-msgstr "Iragarpenak ${inm-link}k emandakoak dira"
+msgstr "Iragarpenak ${aemet-link}k emandakoak dira"
 
 #. Default: "Morning"
 #: ..\skins\meteo\portlet_meteo.pt
@@ -212,10 +207,10 @@ msgstr "Eguraldia"
 msgid "portlet_pm"
 msgstr "Arratsaldean"
 
-#. Default: "Source: INM ${inm-link}"
+#. Default: "Source: INM ${aemet-link}"
 #: ..\skins\meteo\portlet_meteo.pt
 msgid "portlet_source"
-msgstr "Iturria: INM ${inm-link}"
+msgstr "Iturria: AEMET ${aemet-link}"
 
 #. Default: "Invalid code"
 #: ..\skins\meteo\prefs_meteo_form.cpt

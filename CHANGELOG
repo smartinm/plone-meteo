@@ -1,41 +1,32 @@
 Changelog for Meteo
 
-Meteo 0.2.0 - 2008/03/xx
+Meteo 0.2.0 - 2008/03/24
 
-  - Adaptado a la nueva web de la Agencia Estatal de Meteorología (AEMET):
-    - Modificado el código para parsear la tabla de predicción
-    - Añadidos los nuevos iconos
-
-  - Modificada la vista de detalle de la predicción:
-    - Código HTML de la tabla de la web de AEMET
-    - Columna derecha no se oculta (se puede hacer desde el ZMI)
-    - Eliminado el enlace "Volver" en la información meteorologíca detallada
-
-  - Modificadas las referencias al Instituto Nacional de Meteorología (INM)
-    por la Agencia Estatal de Meteorología (AEMET)
-    
-  - Actualización de la biblioteca BeautifulSoup a la version 3.0.5
+  - Compatible with the updated web of Spanish State Meteorological Agency
+    (Agencia Estatal de Meteorología, www.aemet.es)
+  - Featuring new icons
+  - New detailed prediction view
+  - Updated bundled BeautifulSoup library to version 3.0.5
+  - Fixed minor bugs
   
-  - Pequeñas correcciones.
-
 Meteo 0.1.3 - 2007/12/13
 
-  - Added Basque translations. Thanks to Mikel Larreategi.
-  - Replaced PNG configlet icon with GIF (IE doesn't display transparent PNG).
-  - Enhanced parsing of complex names of localities.
-  - Fixed minor bugs.
+  - Added Basque translations, thanks to Mikel Larreategi
+  - Replaced PNG configlet icon with GIF (IE doesn't display transparent PNG)
+  - Enhanced parsing of complex names of localities
+  - Fixed minor bugs
 
 Meteo 0.1.2 - 2007/11/26
 
-  - Added metadata files for icons.
-  - Added documentation for Plone 3.0 support.
-  - Switch from info to debug for log messages.
+  - Added metadata files for icons
+  - Added documentation for Plone 3.0 support
+  - Switch from info to debug for log messages
 
 Meteo 0.1.1 - 2007/11/05
 
-  - Added documentation for proxy support.
-  - Default timeout value to connect INM web server increased to 5s.
+  - Added documentation for proxy support
+  - Default timeout value to connect INM web server increased to 5s
 
 Meteo 0.1.0 - 2007/09/24
 
-  - Initial release.
+  - Initial release

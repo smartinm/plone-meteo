@@ -1,6 +1,5 @@
 /*
-  Hoja de estilos de la Agencia Estatal de Meteorología (www.aemet.es)
-  para la tabla de predicciones por localidades
+  Hoja de estilos adaptada de la Agencia Estatal de Meteorología (www.aemet.es)
   (http://www.aemet.es/css/estilos.css)
   
   <dtml-with base_properties>

@@ -3,17 +3,33 @@
 	padding: 4px;
 }
 
-.meteoForecast {
+#portlet-meteo table {
 	width: 100%;
 }
 
-.meteoForecast td {
+#portlet-meteo table td {
 	padding: 1px 0;
 }
 
-.meteoForecast img {
+#portlet-meteo img {
 	border: 1px solid #ccc;
-	/*border: 3px double #B5D3E2;*/
+}
+
+#portlet-meteo-legal {
+	text-align: right;
+}
+
+#portlet-meteo-legal a {
+	border-bottom: 1px dotted #ccc;
+}
+
+#portlet-meteo-single td {
+	text-align: center;
+	width: 50%;
+}
+
+#portlet-meteo-single td.meteoDay {
+	text-align: left;
 }
 
 .meteoLegal {
@@ -42,15 +58,7 @@
 	font-style: italic;
 }
 
-.meteoRightText {
-	text-align: right;
-}
-
-.meteoCenterText {
-	text-align: center;
-}
-
-#inmWrapperIframe {
+#wrapperIframe {
 	margin-top: 1em;
 	width: 703px;
 	border: 1px solid

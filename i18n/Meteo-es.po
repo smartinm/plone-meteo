@@ -87,10 +87,10 @@ msgstr "Limpiar caché"
 msgid "label_search"
 msgstr "Buscar municipio"
 
-#. Default: "Put here the location code for inm.es"
+#. Default: "Put here the location code for aemet.es"
 #: ..\skins\meteo\prefs_meteo_form.cpt
 msgid "label_location_code"
-msgstr "Código del municipio en inm.es"
+msgstr "Código del municipio en aemet.es"
 
 #. Default: "Number of days"
 #: ..\skins\meteo\prefs_meteo_form.cpt
@@ -121,56 +121,6 @@ msgstr "Identificador de la localidad"
 #: ..\skins\meteo\prefs_meteo_form.cpt
 msgid "legend_meteo_portlet"
 msgstr "Apariencia del portlet"
-
-#. Default: "(${altitud} above sea level)"
-#: ..\skins\meteo\meteo_details.pt
-msgid "meteo_deatils_altitude"
-msgstr "(${altitud} respecto al nivel del mar)"
-
-#. Default: "(Central European Time, CET)"
-#: ..\skins\meteo\meteo_details.pt
-msgid "meteo_deatils_localtime"
-msgstr "(hora local peninsular)"
-
-#. Default: "Go back page"
-#: ..\skins\meteo\meteo_details.pt
-msgid "meteo_details_back"
-msgstr "Volver a la página anterior"
-
-#. Default: "Date"
-#: ..\skins\meteo\meteo_details.pt
-msgid "meteo_details_head_date"
-msgstr "Fecha"
-
-#. Default: "Rainfall probability (%)"
-#: ..\skins\meteo\meteo_details.pt
-msgid "meteo_details_head_rainprob"
-msgstr "Prob. precipitación (%)"
-
-#. Default: "Sky status"
-#: ..\skins\meteo\meteo_details.pt
-msgid "meteo_details_head_state"
-msgstr "Estado del cielo"
-
-#. Default: "Max. Temperature (ºC)"
-#: ..\skins\meteo\meteo_details.pt
-msgid "meteo_details_head_tempmax"
-msgstr "T. Máxima (°C)"
-
-#. Default: "Min. Temperature (ºC)"
-#: ..\skins\meteo\meteo_details.pt
-msgid "meteo_details_head_tempmin"
-msgstr "T. Mínima (°C)"
-
-#. Default: "Max. UV index"
-#: ..\skins\meteo\meteo_details.pt
-msgid "meteo_details_head_uvindex"
-msgstr "Índice UV Máximo"
-
-#. Default: "Wind <br/> <br/> (km/h)"
-#: ..\skins\meteo\meteo_details.pt
-msgid "meteo_details_head_wind"
-msgstr "Viento <br/> <br/> (km/h)"
 
 #. Default: "Weather information for the next seven days"
 #: ..\skins\meteo\meteo_details.pt
@@ -212,7 +162,7 @@ msgstr "El tiempo"
 msgid "portlet_pm"
 msgstr "Tarde"
 
-#. Default: "Source: INM ${aemet-link}"
+#. Default: "Source: AEMET ${aemet-link}"
 #: ..\skins\meteo\portlet_meteo.pt
 msgid "portlet_source"
 msgstr "Fuente: ${aemet-link}"

@@ -28,7 +28,7 @@
   
   <tal:block condition="weather/error | nothing">
     <br />
-    <div id="inmWrapperIframe2">
+    <div id="wrapperIframe">
         <iframe src=""
                 name="inmFrame"
                 id="inmFrame"
@@ -54,7 +54,7 @@
     <span i18n:name="aemet-link">
     <a href="http://www.aemet.es"
        title="http://www.aemet.es"
-       i18n:translate="aemet">Spain Meteorological Agency</a>
+       i18n:translate="aemet">Spanish State Meteorological Agency</a>
      </span>
   </div>
 </metal:main>

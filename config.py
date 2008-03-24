@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Meteo
-# Copyright (C) 2007 GMV SGI Team <http://www.gmv-sgi.es>
+# Copyright (C) 2008 GMV SGI Team <http://www.gmv-sgi.es>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of version 2 of the GNU General Public
@@ -36,6 +36,10 @@ SKINS_DIR = 'skins'
 # preserved. It passes to the package_home() etc.
 GLOBALS = globals()
 
+# Porlets internal names, please don't touch.
+PORTLET_SINGLE   = 'single'
+PORTLET_MULTIPLE = 'multiple'
+
 # XXX: no support yet
 AEMET_LANGUAGES = DisplayList((
     ('es', 'Español',    'label_lang_es'),
@@ -47,12 +51,8 @@ AEMET_LANGUAGES = DisplayList((
     ('fr', 'Francés',    'label_lang_fr'),
 ))
 
-# Porlets internal names, please don't touch.
-PORTLET_SINGLE   = 'single'
-PORTLET_MULTIPLE = 'multiple'
-
-# Configurable cache duration in hours
+# Cache duration in hours
 CACHE_DURATION_IN_HOURS = 2
 
-# Configurable timeout on connect to inm.es (set None for no timeout)
+# Timeout on connect to aemet.es (set None for no timeout, not recommended)
 TIMEOUT_IN_SECONDS = 5

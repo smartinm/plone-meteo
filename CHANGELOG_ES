@@ -1,0 +1,41 @@
+Historial de cambios de Meteo
+
+Meteo 0.2.0 - 2008/03/24
+
+  - Adaptado a la nueva web de la Agencia Estatal de Meteorología (AEMET):
+    - Modificado el código que parsea la tabla de predicción
+    - Añadidos nuevos iconos de la web AEMET
+
+  - Modificada la vista de detalle de la predicción:
+    - Nuevo código HTML de la tabla de predicciones
+    - Columna derecha no se oculta (se puede hacer desde el ZMI)
+    - Eliminado el enlace "Volver" en la información meteorologíca detallada
+
+  - Modificadas las referencias al Instituto Nacional de Meteorología (INM)
+    por la Agencia Estatal de Meteorología (AEMET)
+    
+  - Actualización de la biblioteca BeautifulSoup a la version 3.0.5
+  
+  - Otras pequeñas correcciones
+
+Meteo 0.1.3 - 2007/12/13
+
+  - Añadida traducción al euskera, gracias a Mikel Larreategi
+  - Convertido el icono PNG del configlet a GIF para evitar problemas con IE
+  - Mejorado el parseo de nombres de localidades
+  - Arreglados pequeños fallos
+
+Meteo 0.1.2 - 2007/11/26
+
+  - Añadidos ficheros metadata para los iconos y otro recursos gráficos
+  - Añadida documentación para instalar Meteo en Plone 3.x
+  - Cambiado el nivel de los mensajes de log de info a debug
+
+Meteo 0.1.1 - 2007/11/05
+
+  - Añadida documentación para soporte de proxy
+  - Valor por defecto del timeout para conectar a la web INM incrementado a 5s
+
+Meteo 0.1.0 - 2007/09/24
+
+  - Primera release

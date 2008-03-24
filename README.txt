@@ -1,8 +1,8 @@
 Meteo
 
   Meteo is a product that lets your Plone site shows the local weather forecast
-  for Spain provided by the National Institute of Meteorology
-  ("www.inm.es":http://www.inm.es)
+  for Spain provided by the State Meteorological Agency
+  ("www.aemet.es":http://www.aemet.es)
 
 
 Features
@@ -66,7 +66,7 @@ Proxy support
 
 License
 
-  Copyright (C) 2007 GMV SGI Team ("www.gmv-sgi.es":http://www.gmv-sgi.es)
+  Copyright (C) 2008 GMV SGI Team ("www.gmv-sgi.es":http://www.gmv-sgi.es)
  
   This program is free software; you can redistribute it and/or
   modify it under the terms of version 2 of the GNU General Public
@@ -92,5 +92,5 @@ Credits
   
   Meteo uses Beautiful Soup to parser html documents.
 
-  The icons used by the product have been provided by National Institute of
-  Meteorology website.
+  The icons used by the product have been provided by State Meteorological
+  Agency website.

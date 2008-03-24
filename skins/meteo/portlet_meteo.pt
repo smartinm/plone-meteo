@@ -1,7 +1,7 @@
 <html xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      xml:lang="es" lang="es"
+      xml:lang="en" lang="en"
       i18n:domain="meteo">
 
 <body>
@@ -40,7 +40,7 @@
   
   <dd class="portletItem even"
       id="portlet-meteo-location"
-      tal:condition="not: weather/error | nothing">
+      tal:condition="not:weather/error|nothing">
     <a href=""
        alt="More details"
        title="More details"
@@ -50,22 +50,20 @@
        tal:content="weather/location">Location</a>
   </dd>
   
+
+  <tal:multiple tal:condition="python:portlet_type == 'multiple'">
   <dd class="portletItem odd"
-      id="portlet-weather-icon"
+      id="portlet-meteo-multiple"
       tal:condition="not:weather/error|nothing">
 
-    <tal:multiple tal:condition="python: portlet_type == 'multiple'">
-    <table class="meteoForecast">
+    <table>
       <tal:loop repeat="dayData weather/forecast">
         <tr>
-          <td>
-            <span tal:content="dayData/dayOfWeek"
-                  i18n:translate=""></span>
+          <td class="meteoDay">
+            <span tal:content="dayData/dayOfWeek" i18n:translate=""></span>
           </td>
           <td rowspan="2">
-            <img src=""
-                 alt=""
-                 title=""
+            <img src="" alt="" title=""
                  height="35" width="35"
                  tal:attributes="src dayData/iconUrl;
                                  alt dayData/iconAlternativeText;
@@ -75,43 +73,51 @@
         <tr>
           <td tal:define="maxTemp dayData/maxTemperature;
                           minTemp dayData/minTemperature">
-            <span class="meteoBlue" tal:content="structure minTemp"></span>&nbsp;&frasl;&nbsp;<span class="meteoRed" tal:content="structure maxTemp"></span>
+            <span class="meteoBlue"
+                  tal:content="structure minTemp">
+            </span>&nbsp;&frasl;&nbsp;<span class="meteoRed"
+                                            tal:content="structure maxTemp">
+                                      </span>
           </td>
         </tr>
       </tal:loop>
     </table>
-    </tal:multiple>
-    
-    <tal:single tal:condition="python: portlet_type == 'single'">
-    <table class="meteoForecast">
+  </dd>
+  </tal:multiple>
+  
+  <tal:single tal:condition="python:portlet_type == 'single'">
+  <dd class="portletItem odd"
+      id="portlet-meteo-single"
+      tal:condition="not:weather/error|nothing">
+
+    <table>
       <tal:block define="dayData weather/today">
         <tr>
-          <td colspan="2">
-            <span tal:content="dayData/dayOfWeek"
-                  i18n:translate=""></span>
+          <td colspan="2" class="meteoDay">
+            <span tal:content="dayData/dayOfWeek" i18n:translate=""></span>
           </td>
         </tr>
         <tr>
-          <td colspan="2" class="meteoCenterText"
+          <td colspan="2"
               tal:define="maxTemp dayData/maxTemperature;
                           minTemp dayData/minTemperature">
-            <span class="meteoBlue" tal:content="structure minTemp"></span>&nbsp;&frasl;&nbsp;<span class="meteoRed" tal:content="structure maxTemp"></span>
+            <span class="meteoBlue"
+                  tal:content="structure minTemp">
+            </span>&nbsp;&frasl;&nbsp;<span class="meteoRed"
+                                            tal:content="structure maxTemp">
+                                      </span>
           </td>
         </tr>
         <tr>
-          <td class="meteoCenterText">
-            <img src=""
-                 alt=""
-                 title=""
+          <td>
+            <img src="" alt="" title=""
                  height="35" width="35"
                  tal:attributes="src dayData/iconUrlAM;
                                  alt dayData/iconAlternativeTextAM;
                                  title dayData/iconAlternativeTextAM" />
           </td>
-          <td class="meteoCenterText">
-            <img src=""
-                 alt=""
-                 title=""
+          <td>
+            <img src="" alt="" title=""
                  height="35" width="35"
                  tal:attributes="src dayData/iconUrlPM;
                                  alt dayData/iconAlternativeTextPM;
@@ -119,35 +125,38 @@
           </td>
         </tr>
         <tr>
-          <td class="discreet meteoCenterText"
+          <td class="discreet"
               i18n:translate="portlet_am">
             Morning
           </td>
-          <td class="discreet meteoCenterText"
+          <td class="discreet"
               i18n:translate="portlet_pm">
             Afternoon
           </td>
         </tr>
       </tal:block>
     </table>
-    </tal:single>
-
   </dd>
-  <dd class="portletFooter discreet meteoRightText"
+  </tal:single>
+
+  <dd class="portletFooter discreet"
+      id="portlet-meteo-legal"
       tal:condition="not: weather/error|nothing"
       i18n:translate="portlet_source">
     Source:
     <span i18n:name="aemet-link">
-      <a style="border-bottom: 1px dotted;"
-         href="http://www.aemet.es"
-         title="Spain Meteorological Agency - Agencia Estatal de Meteorología (www.aemet.es)"
+      <a href="http://www.aemet.es"
+         title="Spanish State Meteorological Agency (www.aemet.es)"
          i18n:attributes="title aemet">AEMET</a>
     </span>
   </dd>
+
   <dd class="portletFooter"
-      tal:condition="tool/adminLink"
-      id="portlet-weather-settings">
-    <a i18n:translate="change_settings"
+      id="portlet-meteo-settings"
+      tal:condition="tool/adminLink">
+    <a title="Change settings"
+       i18n:translate="change_settings"
+       i18n:attributes="title change_settings"
        tal:attributes="href string: $portal_url/prefs_meteo_form">Change settings</a>
   </dd>
 </dl>

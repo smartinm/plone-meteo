@@ -1,8 +1,8 @@
 Meteo
 
   Meteo es un producto que muestra en tu sitio Plone la predicción
-  meteorológica por localidades ofrecida por el Instituto Nacional
-  de Meteorología ("www.inm.es":http://www.inm.es)
+  meteorológica por localidades ofrecida por la Agencia Estatal de
+  Meteorología ("www.aemet.es":http://www.aemet.es).
 
 Características
 

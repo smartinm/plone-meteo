@@ -22,7 +22,6 @@ meteoTool.manageFormResults(locationCode=location_code,
 
 status = "success"
 portal_msg = "Meteo Configuration has been successfully updated."
-#context.plone_utils.addPortalMessage(_(u'Mail Host Updated'))
 
 return state.set(status=status,
                  portal_status_message=portal_msg)
