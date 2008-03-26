@@ -401,5 +401,5 @@ def local_weather(location_code, language='es', path_src='meteo_icons/', timeout
         "capital"  : capital,
         "date"     : date,
         "forecast" : forecast,
-        "html"     : forecast_html,
+        "table"    : str(forecast_html),
     }

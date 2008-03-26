@@ -1,5 +1,10 @@
 Historial de cambios de Meteo
 
+Meteo 0.2.1 - 2008/03/26
+
+  - Arreglado un fallo cuando se utilizaba Meteo en Plone 3.x
+  - Arreglado un fallo cuando se actualizaba desde una versión anterior de Meteo
+
 Meteo 0.2.0 - 2008/03/24
 
   - Adaptado a la nueva web de la Agencia Estatal de Meteorología (AEMET):

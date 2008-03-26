@@ -45,7 +45,7 @@
   </tal:block>
   
   <tal:block condition="not:weather/error | nothing">
-    <tal:table replace="structure python:weather['html']" />
+    <tal:table replace="structure python:weather['table']" />
   </tal:block>
   
   <div class="meteoLegal"

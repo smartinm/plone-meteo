@@ -96,11 +96,11 @@ def addWeatherTool(self, out):
     # Check that the tool has not been added using its id
     if not hasattr(self, 'meteo_tool'):
         addTool = self.manage_addProduct['Meteo'].manage_addTool
-        # Add the tool by its meta_type
-        addTool('Meteo Tool')
+        addTool('Meteo Tool') # Add the tool by its meta_type
     weatherTool = getToolByName(self, 'meteo_tool', None)
-    #result = weatherTool.migrate()
-    #out.write(result + "\n")
+    result = weatherTool.migrate()
+    out.write(result + "\n")
+    weatherTool.flushCache()
 
 def installConfiglet(self, out):
     configTool = getToolByName(self, 'portal_controlpanel', None)

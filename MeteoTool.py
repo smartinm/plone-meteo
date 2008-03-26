@@ -41,34 +41,30 @@ import LocationsTable
 class MeteoTool(UniqueObject, SimpleItem):
     """
     """
-    id = 'meteo_tool'
-    meta_type = 'Meteo Tool'
+    id         = 'meteo_tool'
+    title      = 'Meteo Tool'
+    meta_type  = 'Meteo Tool'
     plone_tool = 1
-    title = 'Meteo Tool'
-
+    
     security = ClassSecurityInfo()
 
-    security.declarePrivate('manage_afterAdd')
+    security.declarePrivate("manage_afterAdd")
     def manage_afterAdd(self, item, container) :
         """
         """
         SimpleItem.manage_afterAdd(self, item, container)
 
         self.locationCode = ""
-        
         self.cacheDuration = 60 * 60 * CACHE_DURATION_IN_HOURS
-        
         self.numDaysInPortlet = 3
-        
         self.portletType = PORTLET_MULTIPLE
-        
         self.languageCode = "es"
-
+        
         self.cache = {
             "date" : 0,
             "data" : {"error" : "No data"},
         }
-
+        
     security.declarePublic("getLocationCode")
     def getLocationCode(self):
         """ """
@@ -170,7 +166,6 @@ class MeteoTool(UniqueObject, SimpleItem):
             self.cache["date"] = time.time()
             self.cache = self.cache
         except:
-            raise
             result = "renewCache failed"
         
         return result
@@ -303,6 +298,27 @@ class MeteoTool(UniqueObject, SimpleItem):
             data = self.cache["data"]
             
         return data
+
+    security.declareProtected(permissions.ManagePortal, "migrate")
+    def migrate(self):
+        """
+            Check that all properties are present and correctly initialized.
+            If not, install them with a safe default value.
+            It is safe to call it multiple times.
+        """
+        checkFor = [
+            ("languageCode", "es"),
+            ("numDaysInPortlet", 3),
+            ("portletType", PORTLET_MULTIPLE)
+        ]
+        rValue = ""
+        for attr, default in checkFor:
+            if not hasattr(self, attr):
+                setattr(self, attr, default)
+                rValue += "Added: %s\n" % attr
+        if rValue == "":
+            return "Tool was already up to date."
+        return rValue + "\nTool succesfully updated!"
 
     security.declarePublic("adminLink")
     def adminLink(self):

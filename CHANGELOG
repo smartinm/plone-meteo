@@ -1,5 +1,10 @@
 Changelog for Meteo
 
+Meteo 0.2.0 - 2008/03/26
+
+  - Fixed a bug in Plone 3.x
+  - Fixed a bug when upgrading from previous versions
+
 Meteo 0.2.0 - 2008/03/24
 
   - Compatible with the updated web of Spanish State Meteorological Agency

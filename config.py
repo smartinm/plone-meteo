@@ -54,5 +54,5 @@ AEMET_LANGUAGES = DisplayList((
 # Cache duration in hours
 CACHE_DURATION_IN_HOURS = 2
 
-# Timeout on connect to aemet.es (set None for no timeout, not recommended)
+# Timeout on connect to www.aemet.es (set 0 for no timeout, not recommended)
 TIMEOUT_IN_SECONDS = 5
