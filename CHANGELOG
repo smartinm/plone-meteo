@@ -1,6 +1,6 @@
 Changelog for Meteo
 
-Meteo 0.2.0 - 2008/03/26
+Meteo 0.2.1 - 2008/03/26
 
   - Fixed a bug in Plone 3.x
   - Fixed a bug when upgrading from previous versions
